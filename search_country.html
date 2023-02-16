@@ -1,0 +1,2478 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablet web</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <!-- init -->
+    <link rel="stylesheet" href="./css/init.css">
+    <!-- Icons CSS-->
+    <link rel="stylesheet" href="./css/icons.css">
+    <!-- Button CSS -->
+    <link rel="stylesheet" href="./css/Buttons.css">
+    <!-- Search CSS -->
+    <!-- <link rel="stylesheet" href="./css/search_bar.css"> -->
+    <!-- Mobile CSS  -->
+    <link rel="stylesheet" href="./css/m_main.css">
+    <!-- Tablet CSS -->
+    <link rel="stylesheet" href="./css/t_main.css">
+    <!-- mdi CSS -->
+    <link rel="stylesheet" href="./css/mdi.css">
+
+    <!-- MAP -->
+
+    <link rel="stylesheet" href="./maps/leaflet/leaflet.css" />
+    <link rel="stylesheet" href="./maps/apps/css/leaflet-owm.css" />
+    <link rel="stylesheet" href="./maps/apps/css/iconLayers.css" />
+
+    <!-- Swiper -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/> -->
+    <link rel="stylesheet" href="./css/swiper.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+
+
+
+
+
+
+    <!--    freeMode : false, // 슬라이드 넘길 때 위치 고정 여부
+
+    autoHeight : true, // 현재 활성 슬라이드높이 맞게 높이조정
+
+    a11y : false, // 접근성 매개변수(접근성 관련 대체 텍스트 설정이 가능)
+
+    resistance : false, // 슬라이드 터치 저항 여부
+
+    slideToClickedSlide : true, // 해당 슬라이드 클릭시 슬라이드 위치로 이동
+
+    allowTouchMove : true, // (false-스와이핑안됨)버튼으로만 슬라이드 조작이 가능
+
+    watchOverflow : true // 슬라이드가 1개 일 때 pager, button 숨김 여부 설정
+
+    slidesOffsetBefore : number, // 슬라이드 시작 부분 여백
+
+    slidesOffsetAfter : number, -->
+
+    <!--     // 반응형 설정
+    var swiper = new Swiper('.swiper-container', {
+
+    slidesPerView: 1, //레이아웃 뷰 개수
+
+    spaceBetween: 10, //위 slidesPerview 여백
+
+
+
+    breakpoints: { //반응형 width
+
+    640: { //640 이상일 경우
+
+    slidesPerView: 2, //레이아웃 2 },
+
+    768: { slidesPerView: 3, }, 1024: { slidesPerView: 4, }, } }); -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+
+
+    <!-- Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+    <!-- jQuery -->
+    <script src="./js/jquery/jQuery-3.6.1min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $(".gif_txt").fadeIn(4000);
+            $(document).scrollTop(
+                console.log($(document).scrollTop())
+            );
+
+            /* hide new */
+            $(".container_bg").hide();
+
+            /* scroll event */
+            document.addEventListener('scroll', function () {
+                if (window.scrollY > 1000) {
+                    $(".public_box_main").css({
+                        width: "100%",
+                        transform: "scale(0.3)",
+                        position: "sticky",
+                        top: "-260px",
+                        left: "0",
+                        margin: "0",
+                        backgroundColor: "rgba(255, 255, 255, 0)",
+                        transitionDuration: "0.3s",
+                    });
+
+                    $(".city_txt").css({
+                        fontSize: "3rem"
+                    });
+
+                    $(".country_txt").css({
+                        fontSize: "6rem"
+                    });
+
+                    /* show nav */
+                    $(".top_nav").show();
+                    //$(".nav_bg").show();
+                    $(".today_info_box").hide();
+                    $(".than_txt").hide();
+                    $(".main_temp_f").hide();
+
+                }
+                else {
+                    $(".public_box_main").css({
+                        width: "80%",
+                        margin: "2% auto",
+                        transform: "scale(1.0)",
+                        position: "static",
+                        backgroundColor: "rgba(255, 255, 255, 0.1)",
+                        transitionDuration: "0.3s",
+                    });
+
+                    $(".city_txt").css({
+                        fontSize: "2rem"
+                    });
+
+                    $(".country_txt").css({
+                        fontSize: "4rem"
+                    });
+
+                    /* hide nav */
+                    $(".top_nav").hide();
+                    //$(".nav_bg").hide();
+                    $(".today_info_box").show();
+                    $(".than_txt").show();
+                    $(".main_temp_f").show();
+                }
+
+                //console.log(window.scrollY);
+            });
+
+            /* news hover */
+            $(".col").hover(function () {
+                $(this).addClass("white_hover");
+                $(this).find("img").css({
+                    transform: "scale(1.05)",
+                    transition: "0.2s",
+                });
+
+            }, function () {
+                $(this).removeClass("white_hover");
+                $(this).find("img").css({
+                    transform: "scale(1.0)",
+                    transition: "0.2s",
+                });
+            })
+
+
+            // $(".svg_box").load("./src/cloudy_with_rain_and_lightning_s.html");
+            // $(".location_part_map").load("./maps/apps/leaflet-owm.html");
+
+        });
+
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+        var cityName = getParameterByName('city');
+
+
+        /*  openweather API */
+        const MY_API_KEY = "18af23ae04cb2517fa9a12e6c07ee19f";
+        const HOURLY_3 = 40;
+
+
+        /* geoAPI */
+        var geo_api_URL = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=5&appid=" + MY_API_KEY;
+
+        console.log("씨티:" + geo_api_URL);
+
+        /* GEO */
+        $.ajax({
+            url: geo_api_URL,
+            dataType: "json",
+            type: "GET",
+            async: "false",
+            success: function (resp) {
+                var latitude = resp[0].lat;
+                var longitude = resp[0].lon;
+                console.log("지오지오 lat" + resp[0].lat);
+                console.log("지오지오 lot" + resp[0].lon);
+
+                /* API URL */
+                /* main_ API */
+                var main_api_URL = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=" + MY_API_KEY + "&units=metric";
+                /* hourly 4 days API */
+                var hourly_api_URL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude + "&cnt=40&appid=" + MY_API_KEY + "&units=metric";
+                /* 16 days API */
+                var days_api_URL = "https://api.openweathermap.org/data/2.5/forecast/daily?lat=" + latitude + "&lon=" + longitude + "&appid=" + MY_API_KEY + "&units=metric";
+                /* air pollution  API */
+                var airPl_api_URL = "http://api.openweathermap.org/data/2.5/air_pollution?lat=" + latitude + "&lon=" + longitude + "&appid=" + MY_API_KEY;
+
+                /* weather mpa API */
+                var map_api_URL
+                console.log("main : " + main_api_URL);
+                console.log("hourly : " + hourly_api_URL);
+                console.log("days : " + days_api_URL);
+                /* get main API */
+
+
+                /* test */
+                var _11 = document.getElementById("11");
+                var _22 = document.getElementById("22");
+                var _33 = document.getElementById("33");
+                var _44 = document.getElementById("44");
+                var _55 = document.getElementById("55");
+                _11.innerText = " main_api_URL : " + main_api_URL;
+                _22.innerText = " hourly_api_URL : " + hourly_api_URL;
+                _33.innerText = " days_api_URL : " + days_api_URL;
+                _44.innerText = " airPl_api_URL : " + airPl_api_URL;
+                _55.innerText = " geo_api_URL : " + geo_api_URL;
+
+
+                $.ajax({
+                    url: main_api_URL,
+                    dataType: "json",
+                    type: "GET",
+                    async: "false",
+                    success: function (resp) {
+                        //console.log("resp : " + resp);
+                        //console.log("현재온도 : " + (resp.main.temp));
+                        //console.log("현재습도 : " + resp.main.humidity);
+                        //console.log("날씨 : " + resp.weather[0].main);
+                        //console.log("상세날씨설명 : " + resp.weather[0].description);
+                        //console.log("날씨 이미지 : " + resp.weather[0].icon);
+                        //console.log("바람   : " + resp.wind.speed);
+                        //console.log("나라   : " + resp.sys.country);
+                        //console.log("도시이름  : " + resp.name);
+                        //console.log("구름  : " + (resp.clouds.all) + "%");
+                        //
+                        ///* all data */
+                        //
+                        ///* coord */
+                        //console.log(" coord.longitude : " + resp.coord.lon);
+                        //console.log(" coord.latitude : " + resp.coord.lat);
+                        ///* weather */
+                        //console.log(" weather.id : " + resp.weather[0].id);
+                        //console.log(" weather.main : " + resp.weather[0].main);
+                        //console.log(" weather.description : " + resp.weather[0].description);
+                        //console.log(" weather.icon : " + resp.weather[0].icon);
+                        ///* base */
+                        //console.log(" base : " + resp.base);
+                        ///* main */
+                        //console.log(" main.temp : " + resp.main.temp);
+                        //console.log(" main.feels_like : " + resp.main.feels_like);
+                        //console.log(" main.temp_min : " + resp.main.temp_min);
+                        //console.log(" main.temp_max : " + resp.main.temp_max);
+                        //console.log(" main.pressure : " + resp.main.pressure);
+                        //console.log(" main.humidity : " + resp.main.humidity);
+                        //console.log(" main.sea_level : " + resp.main.sea_level);
+                        //console.log(" main.grnd_level : " + resp.main.grnd_level);
+                        ///* visibility */
+                        //console.log(" visibility : " + resp.visibility);
+                        ///* wind *
+                        //console.log(" wind.speed : " + resp.wind.speed);
+                        //console.log(" wind.deg : " + resp.wind.deg);
+                        //console.log(" wind.gust : " + resp.wind.gust);
+                        ///* clouds */
+                        //console.log(" clouds : " + resp.clouds.all);
+                        ///* dt  UTC 시간 */
+                        //console.log(" dt : " + resp.dt);
+                        ///* sys */
+                        //console.log(" sys.type : " + resp.sys.type); //?
+                        //console.log(" sys.id : " + resp.sys.id); //?
+                        //console.log(" sys.country : " + resp.sys.country);
+                        //console.log(" sys.sunrise : " + resp.sys.sunrise);
+                        //console.log(" sys.sunset : " + resp.sys.sunset);
+                        //
+                        ///* sub */
+                        //console.log(" timezone : " + resp.timezone);
+                        //console.log(" id : " + resp.id);
+                        //console.log(" name : " + resp.name);
+                        //console.log(" cod : " + resp.cod);
+
+                        /* printf */
+
+                        /* main_temp. */
+                        var main_temp_c = document.querySelector(".main_temp_c");
+                        main_temp_c.textContent = Math.round(resp.main.temp);
+
+                        var main_temp_f = document.querySelector(".main_temp_f");
+                        main_temp_f.textContent = "(" + Math.round((resp.main.temp * 9 / 5) + 32) + "℉)";
+                        /* city */
+                        var city_txt = document.querySelector(".city_txt");
+                        city_txt.textContent = resp.name;
+                        /* country */
+                        var country_txt = document.querySelector(".country_txt");
+                        country_txt.textContent = resp.sys.country;
+                        // 올림 : Math.ceil()
+                        // 내림 : Math.floor()
+                        // 반올림 : Math.round()
+                        /* feels_like */
+                        var feels_like = document.querySelector(".feels_like_txt");
+                        var top_feels_like = document.querySelector(".top_feels_like_txt");
+                        feels_like.textContent = resp.main.feels_like;
+                        top_feels_like.textContent = resp.main.feels_like;
+                        /* temp_min */
+                        var temp_min = document.querySelector(".temp_min_txt");
+                        var top_temp_min = document.querySelector(".top_temp_min_txt");
+                        temp_min.textContent = resp.main.temp_min;
+                        top_temp_min.textContent = resp.main.temp_min;
+                        /* temp_max */
+                        var temp_max = document.querySelector(".temp_max_txt");
+                        var top_temp_max = document.querySelector(".top_temp_max_txt");
+                        temp_max.textContent = resp.main.temp_max;
+                        top_temp_max.textContent = resp.main.temp_max;
+                        /* humidity */
+                        var humidity = document.querySelector(".humidity_txt");
+                        var top_humidity = document.querySelector(".top_humidity_txt");
+                        humidity.textContent = resp.main.humidity;
+                        top_humidity.textContent = resp.main.humidity;
+                        /* wind */
+                        var wind_speed_txt = document.querySelector(".wind_speed_txt");
+                        var top_wind_speed_txt = document.querySelector(".top_wind_speed_txt");
+                        var wind_deg_txt = document.querySelector(".wind_deg_txt");
+                        var top_wind_deg_txt = document.querySelector(".top_wind_deg_txt");
+                        var wind_gust_txt = document.querySelector(".wind_gust_txt");
+                        $(".wind_arrow").css({
+                            transform: "rotate(" + resp.wind.deg + "deg)",
+                            margin: "4px 5px 5px 5px",
+                            width: "16%",
+                            height: "16%"
+                        })
+                        wind_speed_txt.textContent = resp.wind.speed + "m/s";
+                        top_wind_speed_txt.textContent = resp.wind.speed + "m/s";
+                        //wind_deg_txt.textContent = resp.wind.deg + "deg";
+                        // wind_gust_txt.textContent = resp.wind.gust;
+                        /* visibility_txt */
+                        var visibility_txt = document.querySelector(".visibility_txt");
+                        var top_visibility_txt = document.querySelector(".top_visibility_txt");
+                        visibility_txt.textContent = resp.visibility;
+                        top_visibility_txt.textContent = resp.visibility;
+
+
+                        /* main icon */
+                        var main_icons = document.querySelector(".icons");
+                        resp.weather[0].icon;
+
+                        switch (resp.weather[0].icon) {
+                            case "01d":
+                                $(".main_icons").load("./src/sunny.html");
+                                break;
+                            case "02d":
+                                $(".main_icons").load("./src/cloudy_with_sun.html");
+                                break;
+                            case "03d":
+                                $(".main_icons").load("./src/sunny_with_wind.html");
+                                break;
+                            case "04d":
+                                $(".main_icons").load("./src/cloudy.html");
+                                break;
+                            case "09d":
+                                $(".main_icons").load("./src/rainy.html");
+                                break;
+                            case "10d":
+                                $(".main_icons").load("./src/cloudy_with_rain_and_lightning.html");
+                                break;
+                            case "11d":
+                                $(".main_icons").load("./src/cloudy_with_lightning.html");
+                                break;
+                            case "13d":
+                                $(".main_icons").load("./src/snowy.html");
+                                break;
+                            case "50d":
+                                $(".main_icons").load("./src/sunny.html");
+                                break;
+
+                            case "01n":
+                                $(".main_icons").load("./src/sunny.html");
+                                break;
+                            case "02n":
+                                $(".main_icons").load("./src/cloudy_with_sun.html");
+                                break;
+                            case "03n":
+                                $(".main_icons").load("./src/sunny_with_wind.html");
+                                break;
+                            case "04n":
+                                $(".main_icons").load("./src/cloudy.html");
+                                break;
+                            case "09n":
+                                $(".main_icons").load("./src/rainy.html");
+                                break;
+                            case "10n":
+                                $(".main_icons").load("./src/cloudy_with_rain_and_lightning.html");
+                                break;
+                            case "11n":
+                                $(".main_icons").load("./src/cloudy_with_lightning.html");
+                                break;
+                            case "13n":
+                                $(".main_icons").load("./src/snowy.html");
+                                break;
+                            case "50n":
+                                $(".main_icons").load("./src/sunny.html");
+                                break;
+
+                            default:
+                                break;
+                        };
+
+
+                        console.log("메인 아이콘 : " + resp.weather[0].icon);
+
+
+
+                        /* sun rise/set time */
+                        var sunrise_date = new Date();
+                        var sunset_date = new Date();
+                        var sunrise_date_GMT = sunrise_date.toUTCString(resp.sys.sunrise);
+                        var sunset_date_GMT = sunset_date.toUTCString(resp.sys.sunset);
+
+                        var set_time_sunrise = sunrise_date.toUTCString(resp.sys.sunrise);
+                        var set_time_sunset = sunset_date.toUTCString(resp.sys.sunset);
+                        var sunrise_txt = document.querySelector(".sunrise_txt");
+                        var sunset_txt = document.querySelector(".sunset_txt");
+                        sunrise_txt.textContent = resp.sys.sunrise;
+                        sunset_txt.textContent = resp.sys.sunset;
+                    },
+
+                    error: function (err) {
+                        console.log("failed to get apiURL");
+                    }
+                });
+
+                /* Hourly forecast API */
+                $.ajax({
+                    url: hourly_api_URL,
+                    dataType: "json",
+                    type: "GET",
+                    async: "false",
+                    success: function (resp) {
+                        for (var i = 0; i < HOURLY_3; i++) {
+
+                            var hours_data = new Array();
+                            var hours_ = new Array();
+                            var date_data = new Array();
+                            var date_ = new Array();
+
+                            hours_data[i] = resp.list[i].dt_txt;
+                            hours_[i] = document.querySelector(".hours_" + i);
+                            hours_[i].textContent = hours_data[i].substring(11, 13);
+
+                            /* days / hours */
+                            date_[i] = document.querySelector(".date_" + i);
+                            date_[i].textContent = hours_data[i].substring(5, 10);
+
+                            var desc_txt_ = new Array();
+                            desc_txt_[i] = document.querySelector(".desc_txt_" + i);
+                            desc_txt_[i].textContent = resp.list[i].weather[0].description;
+
+
+                            /* temp */
+
+                            var temp_ = new Array();
+                            temp_[i] = document.querySelector(".temp_" + i);
+                            temp_[i].textContent = (resp.list[i].main.temp);
+                            /* weather icon */
+                            /* list[].weather.icon list */
+                            /* 
+                            01d.png 	01n.png 	clear sky
+                            02d.png 	02n.png 	few clouds
+                            03d.png 	03n.png 	scattered clouds
+                            04d.png 	04n.png 	broken clouds
+                            09d.png 	09n.png 	shower rain
+                            10d.png 	10n.png 	rain
+                            11d.png 	11n.png 	thunderstorm
+                            13d.png 	13n.png 	snow
+                            50d.png 	50n.png 	mist */
+
+                            //01d.png 	01n.png 	clear sky
+                            /*         if (resp.list[i].weather[0].icon == "1" || "1") {
+                                        //$(".svg_" + i + "").load("./src/sunny_s.html");                        
+                                    }
+                                    if (resp.list[i].weather[0].icon == "02d" || "02n") {
+                                        $(".svg_" + i + "").load("./src/clear_night_s.html");
+                                    }
+                                    if (resp.list[i].weather[0].icon == "10d" || "10n") {
+                                        $(".svg_" + i + "").load("./src/rainy_s.html");
+                                    } */
+
+
+
+                            switch (resp.list[i].weather[0].icon) {
+                                case "01d":
+                                    $(".svg_" + i + "").load("./src/sunny_s.html");
+                                    break;
+                                case "02d":
+                                    $(".svg_" + i + "").load("./src/cloudy_with_sun_s.html");
+                                    break;
+                                case "03d":
+                                    $(".svg_" + i + "").load("./src/sunny_with_wind_s.html");
+                                    break;
+                                case "04d":
+                                    $(".svg_" + i + "").load("./src/cloudy_s.html");
+                                    break;
+                                case "09d":
+                                    $(".svg_" + i + "").load("./src/rainy_s.html");
+                                    break;
+                                case "10d":
+                                    $(".svg_" + i + "").load("./src/cloudy_with_rain_and_lightning_s.html");
+                                    break;
+                                case "11d":
+                                    $(".svg_" + i + "").load("./src/cloudy_with_lightning_s.html");
+                                    break;
+                                case "13d":
+                                    $(".svg_" + i + "").load("./src/snowy_s.html");
+                                    break;
+                                case "50d":
+                                    $(".svg_" + i + "").load("./src/sunny_s.html");
+                                    break;
+
+                                case "01n":
+                                    $(".svg_" + i + "").load("./src/sunny_s.html");
+                                    break;
+                                case "02n":
+                                    $(".svg_" + i + "").load("./src/cloudy_with_sun_s.html");
+                                    break;
+                                case "03n":
+                                    $(".svg_" + i + "").load("./src/sunny_with_wind_s.html");
+                                    break;
+                                case "04n":
+                                    $(".svg_" + i + "").load("./src/cloudy_s.html");
+                                    break;
+                                case "09n":
+                                    $(".svg_" + i + "").load("./src/rainy_s.html");
+                                    break;
+                                case "10n":
+                                    $(".svg_" + i + "").load("./src/cloudy_with_rain_and_lightning_s.html");
+                                    break;
+                                case "11n":
+                                    $(".svg_" + i + "").load("./src/cloudy_with_lightning_s.html");
+                                    break;
+                                case "13n":
+                                    $(".svg_" + i + "").load("./src/snowy_s.html");
+                                    break;
+                                case "50n":
+                                    $(".svg_" + i + "").load("./src/sunny_s.html");
+                                    break;
+
+                                default:
+                                    break;
+                            };
+
+
+                            console.log(i + "데이 시간:" + (resp.list[i].dt_txt));
+                            console.log(i + "메인 온도:" + resp.list[i].main.temp);
+                            console.log(i + "데이 시간:" + hours_data[i].substring(11, 13));
+                            console.log(i + " 아이콘 값:" + resp.list[i].weather[0].icon);
+                        }
+                    },
+
+                    error: function (err) {
+                        console.log("failed to get apiURL");
+                    }
+                });
+
+
+                /* air polution */
+                $.ajax({
+                    url: airPl_api_URL,
+                    dataType: "json",
+                    type: "GET",
+                    async: "false",
+                    success: function (resp) {
+                        var air_pollution_txt = document.querySelector(".air_pollution_txt");
+                        var top_air_pollution_txt = document.querySelector(".top_air_pollution_txt");
+                        /* Inddex call */
+                        /*
+                        Good	    1
+                        Fair	    2
+                        Moderate	3
+                        Poor	    4
+                        Very Poor	5
+                         */
+                        switch (resp.list[0].main.aqi) {
+                            case 1:
+                                air_pollution_txt.className += " air_pollution_green";
+                                air_pollution_txt.textContent = "Good";
+                                top_air_pollution_txt.className += " air_pollution_green";
+                                top_air_pollution_txt.textContent = "Good";
+                                break;
+                            case 2:
+                                air_pollution_txt.className += " air_pollution_yellow";
+                                air_pollution_txt.textContent = "Fair";
+                                top_air_pollution_txt.className += " air_pollution_yellow";
+                                top_air_pollution_txt.textContent = "Fair";
+
+                                break;
+                            case 3:
+                                air_pollution_txt.className += " air_pollution_white";
+                                air_pollution_txt.textContent = "Moderate";
+                                top_air_pollution_txt.className += " air_pollution_white";
+                                top_air_pollution_txt.textContent = "Moderate";
+                                break;
+                            case 4:
+                                air_pollution_txt.className += " air_pollution_amber";
+                                air_pollution_txt.textContent = "Poor";
+                                top_air_pollution_txt.className += " air_pollution_amber";
+                                top_air_pollution_txt.textContent = "Poor";
+                                break;
+                            case 5:
+                                air_pollution_txt.className += " air_pollution_red";
+                                air_pollution_txt.textContent = "Very Poor";
+                                top_air_pollution_txt.className += " air_pollution_red";
+                                top_air_pollution_txt.textContent = "Very Poor";
+                                break;
+
+                            default:
+                                break;
+                        }
+                        console.log("공기 오염 : " + resp.list[0].main.aqi);
+                    },
+                    error: function (err) {
+                        console.log("failed to get apiURL");
+                    }
+                });
+
+                console.log("지오지오 lat" + latitude);
+                console.log("지오지오 lot" + longitude);
+
+                /* times */
+
+
+            },
+            error: function (err) {
+                console.log("failed to get apiURL");
+            }
+        })
+
+
+        /* times */
+        function weatherInfo() {
+            $.ajax({
+                url: main_api_URL,
+                dataType: "json",
+                type: "GET",
+                async: "false",
+                success: function (resp) {
+                    /* UTC 타임 */
+                    var main_date = new Date();
+                    var now_utc = Date.UTC(main_date.getUTCFullYear(), main_date.getUTCMonth(),
+                        main_date.getUTCDate(), main_date.getUTCHours(),
+                        main_date.getUTCMinutes(), main_date.getUTCSeconds());
+                    var sub_date = resp.dt * 1000;
+
+                    console.log("now_utc : " + now_utc);
+                    console.log("sub_date : " + (sub_date));
+
+                    /* GMT로 변환 */
+                    var main_date_GMT = main_date.toUTCString();
+                    var main_time_GMT = main_date.getHours();
+
+                    /* main time */
+                    var date_txt = document.querySelector(".date_txt");
+                    var time_txt = document.querySelector(".time_txt");
+                    var time_month_txt = document.querySelector(".time_month_txt");
+                    var time_date_txt = document.querySelector(".time_date_txt");
+                    var time_day_txt = document.querySelector(".time_day_txt");
+                    var time_hours_txt = document.querySelector(".time_hours_txt");
+                    var time_minutes_txt = document.querySelector(".time_minutes_txt");
+                    var time_txt = document.querySelector(".time_txt");
+                    date_txt.textContent = main_date_GMT;
+                },
+                error: function (err) {
+                    console.log("failed to get apiURL");
+                }
+            });
+        };
+
+        /* update times */
+        function weatherUpdaye() {
+            weatherInfo();
+            setInterval(weatherInfo, 1000)
+        };
+        weatherUpdaye();
+
+        /* Hourly forecast API */
+        $.ajax({
+            url: hourly_api_URL,
+            dataType: "json",
+            type: "GET",
+            async: "false",
+            success: function (resp) {
+                for (var i = 0; i < HOURLY_3; i++) {
+
+                    var hours_data = new Array();
+                    var hours_ = new Array();
+                    var date_data = new Array();
+                    var date_ = new Array();
+
+                    hours_data[i] = resp.list[i].dt_txt;
+                    hours_[i] = document.querySelector(".hours_" + i);
+                    hours_[i].textContent = hours_data[i].substring(11, 13);
+
+                    /* days / hours */
+                    date_[i] = document.querySelector(".date_" + i);
+                    date_[i].textContent = hours_data[i].substring(5, 10);
+
+                    var desc_txt_ = new Array();
+                    desc_txt_[i] = document.querySelector(".desc_txt_" + i);
+                    desc_txt_[i].textContent = resp.list[i].weather[0].description;
+
+
+                    /* temp */
+
+                    var temp_ = new Array();
+                    temp_[i] = document.querySelector(".temp_" + i);
+                    temp_[i].textContent = (resp.list[i].main.temp);
+                    /* weather icon */
+                    /* list[].weather.icon list */
+                    /* 
+                    01d.png 	01n.png 	clear sky
+                    02d.png 	02n.png 	few clouds
+                    03d.png 	03n.png 	scattered clouds
+                    04d.png 	04n.png 	broken clouds
+                    09d.png 	09n.png 	shower rain
+                    10d.png 	10n.png 	rain
+                    11d.png 	11n.png 	thunderstorm
+                    13d.png 	13n.png 	snow
+                    50d.png 	50n.png 	mist */
+
+                    //01d.png 	01n.png 	clear sky
+                    /*         if (resp.list[i].weather[0].icon == "1" || "1") {
+                                //$(".svg_" + i + "").load("./src/sunny_s.html");                        
+                            }
+                            if (resp.list[i].weather[0].icon == "02d" || "02n") {
+                                $(".svg_" + i + "").load("./src/clear_night_s.html");
+                            }
+                            if (resp.list[i].weather[0].icon == "10d" || "10n") {
+                                $(".svg_" + i + "").load("./src/rainy_s.html");
+                            } */
+
+
+
+                    switch (resp.list[i].weather[0].icon) {
+                        case "01d":
+                            $(".svg_" + i + "").load("./src/sunny_s.html");
+                            break;
+                        case "02d":
+                            $(".svg_" + i + "").load("./src/cloudy_with_sun_s.html");
+                            break;
+                        case "03d":
+                            $(".svg_" + i + "").load("./src/sunny_with_wind_s.html");
+                            break;
+                        case "04d":
+                            $(".svg_" + i + "").load("./src/cloudy_s.html");
+                            break;
+                        case "09d":
+                            $(".svg_" + i + "").load("./src/rainy_s.html");
+                            break;
+                        case "10d":
+                            $(".svg_" + i + "").load("./src/cloudy_with_rain_and_lightning_s.html");
+                            break;
+                        case "11d":
+                            $(".svg_" + i + "").load("./src/cloudy_with_lightning_s.html");
+                            break;
+                        case "13d":
+                            $(".svg_" + i + "").load("./src/snowy_s.html");
+                            break;
+                        case "50d":
+                            $(".svg_" + i + "").load("./src/sunny_s.html");
+                            break;
+
+                        case "01n":
+                            $(".svg_" + i + "").load("./src/sunny_s.html");
+                            break;
+                        case "02n":
+                            $(".svg_" + i + "").load("./src/cloudy_with_sun_s.html");
+                            break;
+                        case "03n":
+                            $(".svg_" + i + "").load("./src/sunny_with_wind_s.html");
+                            break;
+                        case "04n":
+                            $(".svg_" + i + "").load("./src/cloudy_s.html");
+                            break;
+                        case "09n":
+                            $(".svg_" + i + "").load("./src/rainy_s.html");
+                            break;
+                        case "10n":
+                            $(".svg_" + i + "").load("./src/cloudy_with_rain_and_lightning_s.html");
+                            break;
+                        case "11n":
+                            $(".svg_" + i + "").load("./src/cloudy_with_lightning_s.html");
+                            break;
+                        case "13n":
+                            $(".svg_" + i + "").load("./src/snowy_s.html");
+                            break;
+                        case "50n":
+                            $(".svg_" + i + "").load("./src/sunny_s.html");
+                            break;
+
+                        default:
+                            break;
+                    };
+
+
+                    console.log(i + "데이 시간:" + (resp.list[i].dt_txt));
+                    console.log(i + "메인 온도:" + resp.list[i].main.temp);
+                    console.log(i + "데이 시간:" + hours_data[i].substring(11, 13));
+                    console.log(i + " 아이콘 값:" + resp.list[i].weather[0].icon);
+                }
+            },
+
+            error: function (err) {
+                console.log("failed to get apiURL");
+            }
+        });
+
+
+        /* air polution */
+        $.ajax({
+            url: airPl_api_URL,
+            dataType: "json",
+            type: "GET",
+            async: "false",
+            success: function (resp) {
+                var air_pollution_txt = document.querySelector(".air_pollution_txt");
+                var top_air_pollution_txt = document.querySelector(".top_air_pollution_txt");
+                /* Inddex call */
+                /*
+                Good	    1
+                Fair	    2
+                Moderate	3
+                Poor	    4
+                Very Poor	5
+                 */
+                switch (resp.list[0].main.aqi) {
+                    case 1:
+                        air_pollution_txt.className += " air_pollution_green";
+                        air_pollution_txt.textContent = "Good";
+                        top_air_pollution_txt.className += " air_pollution_green";
+                        top_air_pollution_txt.textContent = "Good";
+                        break;
+                    case 2:
+                        air_pollution_txt.className += " air_pollution_yellow";
+                        air_pollution_txt.textContent = "Fair";
+                        top_air_pollution_txt.className += " air_pollution_yellow";
+                        top_air_pollution_txt.textContent = "Fair";
+
+                        break;
+                    case 3:
+                        air_pollution_txt.className += " air_pollution_white";
+                        air_pollution_txt.textContent = "Moderate";
+                        top_air_pollution_txt.className += " air_pollution_white";
+                        top_air_pollution_txt.textContent = "Moderate";
+                        break;
+                    case 4:
+                        air_pollution_txt.className += " air_pollution_amber";
+                        air_pollution_txt.textContent = "Poor";
+                        top_air_pollution_txt.className += " air_pollution_amber";
+                        top_air_pollution_txt.textContent = "Poor";
+                        break;
+                    case 5:
+                        air_pollution_txt.className += " air_pollution_red";
+                        air_pollution_txt.textContent = "Very Poor";
+                        top_air_pollution_txt.className += " air_pollution_red";
+                        top_air_pollution_txt.textContent = "Very Poor";
+                        break;
+
+                    default:
+                        break;
+                }
+                console.log("공기 오염 : " + resp.list[0].main.aqi);
+            },
+            error: function (err) {
+                console.log("failed to get apiURL");
+            }
+        })
+
+
+
+
+
+
+    </script>
+</head>
+
+<body>
+
+    <div class="top_menu_bg">
+
+        <div class="top_menu">
+
+        </div>
+
+    </div>
+    <!-- top nav -->
+
+
+    <div class="nav_bg">
+        <nav>
+            <div class="menu-btn">
+                <div class="line line--1"></div>
+                <div class="line line--2"></div>
+                <div class="line line--3"></div>
+            </div>
+
+            <div class="nav-links">
+                <a href="" class="link">Home</a>
+                <a href="" class="link">Industries</a>
+                <a href="" class="link">Weather Data</a>
+                <a href="" class="link">Our new products</a>
+                <a href="" class="link">About2</a>
+                <a href="" class="link">Blog</a>
+                <a href="" class="link">News</a>
+
+                <!-- search bar -->
+                <div class="search_content">
+                    <input type="text" onkeyup="search()" placeholder="Search for.." autofocus />
+                    <ul class="country_list">
+                        <li class="languages"><a href="search_country.html?city=Andorra">Andorra (AD) 안도라</a></li>
+                        <li class="languages"><a href="search_country.html?city=Unitedarabemirates">Unitedarabemirates
+                                (AE) 아랍에미레이트연합국</a></li>
+                        <li class="languages"><a href="search_country.html?city=Afghanistan">Afghanistan (AF) 아프가니스탄</a>
+                        </li>
+                        <li class="languages"><a href="search_country.html?city=Antiguaandbarbuda">Antiguaandbarbuda
+                                (AG) 앤티과바부다</a></li>
+                        <li class="languages"><a href="search_country.html?city=Anguilla">Anguilla AI (영국)(안귈라섬</a>)
+                        </li>
+                        <li class="languages"><a href="search_country.html?city=Albania">Albania (AL) 알바니아</a></li>
+                        <li class="languages"><a href="search_country.html?city=Armenia">Armenia (AM) 아르메니아</a></li>
+                        <li class="languages"><a href="search_country.html?city=Netherlands">Netherlands(Antilles) AN
+                                (네덜)란드(네덜란드령앤틸리스</a>)</li>
+                        <li class="languages"><a href="search_country.html?city=Angola">Angola (AO) 앙골라</a></li>
+                        <li class="languages"><a href="search_country.html?city=Argentina">Argentina (AR) 아르헨티나</a></li>
+                        <li class="languages"><a href="search_country.html?city=Americansamoa">Americansamoa AS
+                                (미국)(사모아제도</a>)</li>
+                        <li class="languages"><a href="search_country.html?city=Austria">Austria (AT) 오스트리아</a></li>
+                        <li class="languages"><a href="search_country.html?city=Australia">Australia AU
+                                (오스)트레일리아(호주</a>)</li>
+                        <li class="languages"><a href="search_country.html?city=Aruba">Aruba AW (네덜)란드(아루바섬</a>)</li>
+                        <li class="languages"><a href="search_country.html?city=Azerbaijan">Azerbaijan (AZ) 아제르바이잔</a>
+                        </li>
+                        <li class="languages"><a
+                                href="search_country.html?city=Bosniaandherzegovina">Bosniaandherzegovina (BA)
+                                보스니아헤르체코비나</a></li>
+                        <li class="languages"><a href="search_country.html?city=Barbados">Barbados (BB) 바베이도스</a></li>
+                        <li class="languages"><a href="search_country.html?city=Bangladesh">Bangladesh (BD) 방글라데시</a>
+                        </li>
+                        <li class="languages"><a href="search_country.html?city=Belgium">Belgium (BE) 벨기에</a></li>
+                        <li class="languages"><a href="search_country.html?city=Burkinafaso">Burkinafaso (BF) 부르키나파소</a>
+                        </li>
+                        <li class="languages"><a href="search_country.html?city=Bulgaria">Bulgaria(Rep) (BG) 불가리아</a>
+                        </li>
+                        <li class="languages"><a href="search_country.html?city=Bahrain">Bahrain (BH) 바레인</a></li>
+                        <li class="languages"><a href="search_country.html?city=Burundi">Burundi (BI) 브룬디</a></li>
+                        <li class="languages"><a href="search_country.html?city=Benin">Benin (BJ) 베넹</a></li>
+                        <li class="languages"><a href="search_country.html?city=Bermuda">Bermuda BM (영국)(버뮤다섬</a>)</li>
+                        <li class="languages"><a href="search_country.html?city=Bruneidarussalam">Bruneidarussalam BN
+                                (브루)네이(나이</a>)</li>
+                        <li class="languages"><a href="search_country.html?city=Bolivia">Bolivia (BO) 볼리비아</a></li>
+                        <li class="languages"><a href="search_country.html?city=Brazil">Brazil (BR) 브라질</a></li>
+                        <li class="languages"><a href="search_country.html?city=Bahamas">Bahamas (BS) 바하마</a></li>
+                        <li class="languages"><a href="search_country.html?city=Bhutan">Bhutan (BT) 부탄</a></li>
+                        <li class="languages"><a href="search_country.html?city=Botswana">Botswana (BW) 보츠와나</a></li>
+                        <li class="languages"><a href="search_country.html?city=Belarus">Belarus (BY) 벨라루스</a></li>
+                        <li class="languages"><a href="search_country.html?city=Belize">Belize (BZ) 벨리세</a></li>
+                        <li class="languages"><a href="search_country.html?city=Canada">Canada (CA) 카나다</a></li>
+                        <li class="languages"><a
+                                href="search_country.html?city=Centralafricanrepublic">Centralafricanrepublic (CF)
+                                중앙아프리카</a></li>
+                        <li class="languages"><a href="search_country.html?city=Congo">Congo (CG) 콩고</a></li>
+                        <li class="languages"><a href="search_country.html?city=Switzerland">Switzerland (CH) 스위스</a>
+                        </li>
+                        <li class="languages"><a href="search_country.html?city=Cotedivoire">Cotedivoire (CI) 코트디봐르</a>
+                        </li>
+                        <li class="languages"><a href="search_country.html?city=Chile">Chile (CL) 칠레</a></li>
+                        <li class="languages"><a href="search_country.html?city=Cameroon">Cameroon (CM) 카메룬</a></li>
+                        <li class="languages"><a href="search_country.html?city=China">China(People'Srep) (CN) 중국</a>
+                        </li>
+                        <li class="languages"><a href="search_country.html?city=Colombia">Colombia (CO) 콜롬비아</a></li>
+                        <li class="languages"><a href="search_country.html?city=Costarica">Costarica (CR) 코스타리카</a></li>
+                        <li class="languages"><a href="search_country.html?city=Czechoslovakia">Czechoslovakia (CS)
+                                체코슬로바키아</a></li>
+                        <li class="languages"><a href="search_country.html?city=Cuba">Cuba (CU) 쿠바</a></li>
+                        <li class="languages"><a href="search_country.html?city=Capeverde">Capeverde (CV) 카보베르데</a></li>
+                        <li class="languages"><a href="search_country.html?city=Cyprus">Cyprus (CY) 사이프러스</a></li>
+                        <li class="languages"><a href="search_country.html?city=Czechrep">Czechrep (CZ) 체코</a></li>
+                        <li class="languages"><a href="search_country.html?city=Germany">Germany (DE) 독일</a></li>
+                        <li class="languages"><a href="search_country.html?city=Djibouti">Djibouti (DJ) 지부티</a></li>
+                        <li class="languages"><a href="search_country.html?city=Denmark">Denmark (DK) 덴마크</a></li>
+                        <li class="languages"><a href="search_country.html?city=Dominica">Dominica (DM) 도미니카연방</a></li>
+                        <li class="languages"><a href="search_country.html?city=Dominicanrepublic">Dominicanrepublic
+                                (DO) 도미니카공화국</a></li>
+                        <li class="languages"><a href="search_country.html?city=Algeria">Algeria (DZ) 알제리</a></li>
+                        <li class="languages"><a href="search_country.html?city=Ecuador">Ecuador (EC) 에콰도르</a></li>
+                        <li class="languages"><a href="search_country.html?city=Estonia">Estonia (EE) 에스토니아</a></li>
+                        <li class="languages"><a href="search_country.html?city=Egypt">Egypt (EG) 이집트</a></li>
+                        <li class="languages"><a href="search_country.html?city=Eritrea">Eritrea (ER) 에리트리아</a></li>
+                        <li class="languages"><a href="search_country.html?city=Spain">Spain ES (스페)인(에스파니아</a>)</li>
+                        <li class="languages"><a href="search_country.html?city=Ethiopia">Ethiopia (ET) 이디오피아</a></li>
+                        <li class="languages"><a href="search_country.html?city=Finland">Finland (FI) 필란드</a></li>
+                        <li class="languages"><a href="search_country.html?city=Fiji">Fiji (FJ) 피지</a></li>
+                        <li class="languages"><a href="search_country.html?city=Micronesia">Micronesia FM
+                                (미크)로네시아(마이크로네시아</a>)</li>
+                        <li class="languages"><a href="search_country.html?city=Faroeislands">Faroeislands FO
+                                (덴마)크(페로즈제도</a>)</li>
+                        <li class="languages"><a href="search_country.html?city=France">France (FR) 프랑스</a></li>
+                        <li class="languages"><a href="search_country.html?city=Gabon">Gabon (GA) 가봉</a></li>
+                        <li class="languages"><a href="search_country.html?city=Unitedkingdom">Unitedkingdom (GB) 영국</a>
+                        </li>
+                        <li class="languages"><a href="search_country.html?city=Grenada">Grenada (GD) 그레나다</a></li>
+                        <li class="languages"><a href="search_country.html?city=Georgia">Georgia (GE) 그루지야</a></li>
+                        <li class="languages"><a href="search_country.html?city=Frenchguiana">Frenchguiana GF
+                                (프랑)스(기아나</a>)</li>
+                        <li class="languages"><a href="search_country.html?city=Ghana">Ghana (GH) 가나</a></li>
+                        <li class="languages"><a href="search_country.html?city=Gibraltar">Gibraltar GI (영국)(지브롤터</a>)
+                        </li>
+                        <li class="languages"><a href="search_country.html?city=Greenland">Greenland GL (덴마)크(그린란드</a>)
+                        </li>
+                        <li class="languages"><a href="search_country.html?city=Gambia">Gambia (GM) 감비아</a></li>
+                        <li class="languages"><a href="search_country.html?city=Guinea">Guinea (GN) 기니</a></li>
+                        <li class="languages"><a href="search_country.html?city=Guadeloupe">Guadeloupe GP
+                                (프랑)스(과데루프섬</a>)</li>
+                        <li class="languages"><a href="search_country.html?city=Greece">Greece (GR) 그리스</a></li>
+                        <li class="languages"><a href="search_country.html?city=Guatemala">Guatemala (GT) 과테말라</a></li>
+                        <li class="languages"><a href="search_country.html?city=Guam">Guam GU (미국)(괌</a>)</li>
+                        <li class="languages"><a href="search_country.html?city=Guinea">Guinea-Bissau (GW) 기니비소</a></li>
+                        <li class="languages"><a href="search_country.html?city=Guyana">Guyana (GY) 가이아나</a></li>
+                        <li class="languages"><a href="search_country.html?city=China">China(Hongkong) HK (중국)(홍콩</a>)
+                        </li>
+                        <li class="languages"><a href="search_country.html?city=Honduras">Honduras (HN) 온두라스</a></li>
+                        <li class="languages"><a href="search_country.html?city=Croatia">Croatia (HR) 크로아티아</a></li>
+                        <li class="languages"><a href="search_country.html?city=Haiti">Haiti (HT) 아이티</a></li>
+                        <li class="languages"><a href="search_country.html?city=Hungary">Hungary(Rep) (HU) 헝가리</a></li>
+                        <li class="languages"><a href="search_country.html?city=Indonesia">Indonesia (ID) 인도네시아</a></li>
+                        <li class="languages"><a href="search_country.html?city=Ireland">Ireland IE (아일)란드(에이레</a>)</li>
+                        <li class="languages"><a href="search_country.html?city=Israel">Israel (IL) 이스라엘</a></li>
+                        <li class="languages"><a href="search_country.html?city=India">India (IN) 인도</a></li>
+                        <li class="languages"><a href="search_country.html?city=Iraq">Iraq (IQ) 이라크</a></li>
+                        <li class="languages"><a href="search_country.html?city=Iran">Iran(Islamicrep) (IR) 이란</a></li>
+                        <li class="languages"><a href="search_country.html?city=Iceland">Iceland (IS) 아이슬란드</a></li>
+                        <li class="languages"><a href="search_country.html?city=Italy">Italy IT (이탈)리아(이태리</a>)</li>
+                        <li class="languages"><a href="search_country.html?city=Jamaica">Jamaica (JM) 자메이카</a></li>
+                        <li class="languages"><a href="search_country.html?city=Jordan">Jordan (JO) 요르단</a></li>
+                        <li class="languages"><a href="search_country.html?city=Japan">Japan (JP) 일본</a></li>
+                        <li class="languages"><a href="search_country.html?city=Kenya">Kenya (KE) 케냐</a></li>
+                        <li class="languages"><a href="search_country.html?city=Kyrgyzstan">Kyrgyzstan (KG) 키르키즈스탄</a>
+                        </li>
+                        <li class="languages"><a href="search_country.html?city=Cambodia">Cambodia (KH) 캄보디아</a></li>
+                        <li class="languages"><a href="search_country.html?city=Kiribati">Kiribati (KI) 키리바티</a></li>
+                        <li class="languages"><a href="search_country.html?city=Saintkittsandnevis">Saintkittsandnevis
+                                (KN) 세인트키츠네비스</a></li>
+                        <li class="languages"><a href="search_country.html?city=Kuwait">Kuwait (KW) 쿠웨이트</a></li>
+                        <li class="languages"><a href="search_country.html?city=Caymanislands">Caymanislands KY
+                                (영국)(케이만제도</a>)</li>
+                        <li class="languages"><a href="search_country.html?city=Kazakhstan">Kazakhstan (KZ) 카자흐</a></li>
+                        <li class="languages"><a href="search_country.html?city=Laopeople">Laopeople'Sdemrep (LA)
+                                라오스</a></li>
+                        <li class="languages"><a href="search_country.html?city=Lebanon">Lebanon (LB) 레바논</a></li>
+                        <li class="languages"><a href="search_country.html?city=Saintlucia">Saintlucia (LC) 세인트루시아</a>
+                        </li>
+                        <li class="languages"><a href="search_country.html?city=Liechtenstein">Liechtenstein (LI)
+                                리첸쉬테인</a></li>
+                        <li class="languages"><a href="search_country.html?city=Srilanka">Srilanka (LK) 스리랑카</a></li>
+                        <li class="languages"><a href="search_country.html?city=Liberia">Liberia (LR) 라이베리아</a></li>
+                        <li class="languages"><a href="search_country.html?city=Lesotho">Lesotho (LS) 레소토</a></li>
+                        <li class="languages"><a href="search_country.html?city=Lithuania">Lithuania (LT) 리투아니아</a></li>
+                        <li class="languages"><a href="search_country.html?city=Luxemboure">Luxemboure (LU) 룩셈부르크</a>
+                        </li>
+                        <li class="languages"><a href="search_country.html?city=Latvia">Latvia (LV) 라트비아</a></li>
+                        <li class="languages"><a
+                                href="search_country.html?city=Libyanarabjamahiriya">Libyanarabjamahiriya (LY) 리비아</a>
+                        </li>
+                        <li class="languages"><a href="search_country.html?city=Morocco">Morocco (MA) 모로코</a></li>
+                        <li class="languages"><a href="search_country.html?city=Monaco">Monaco (MC) 모나코</a></li>
+                        <li class="languages"><a href="search_country.html?city=Moldova">Moldova,Republicof (MD) 몰도바</a>
+                        </li>
+                        <li class="languages"><a href="search_country.html?city=Madagascar">Madagascar (MG) 마다가스카르</a>
+                        </li>
+                        <li class="languages"><a href="search_country.html?city=Marshallislands">Marshallislands MH
+                                (미국)(마아샬제도</a>)</li>
+                        <li class="languages"><a href="search_country.html?city=Macedonia">Macedonia (MK) 마케도니아</a></li>
+                        <li class="languages"><a href="search_country.html?city=Mali">Mali (ML) 말리</a></li>
+                        <li class="languages"><a href="search_country.html?city=Myanmar">Myanmar (MM) 미얀마</a></li>
+                        <li class="languages"><a href="search_country.html?city=Mongolia">Mongolia (MN) 몽고</a></li>
+                        <li class="languages"><a href="search_country.html?city=Macao">Macao MO (중국)(마카오</a>)</li>
+                        <li class="languages"><a
+                                href="search_country.html?city=Northernmarianaislands">Northernmarianaislands MP
+                                (미국)(사이판</a>)</li>
+                        <li class="languages"><a href="search_country.html?city=Martinique">Martinique MQ
+                                (프랑)스(마르티니크섬</a>)</li>
+                        <li class="languages"><a href="search_country.html?city=Mauritania">Mauritania (MR) 모리타니</a>
+                        </li>
+                        <li class="languages"><a href="search_country.html?city=Montserrat">Montserrat MS (영국)(몽세라</a>)
+                        </li>
+                        <li class="languages"><a href="search_country.html?city=Malta">Malta (MT) 몰타</a></li>
+                        <li class="languages"><a href="search_country.html?city=Mauritius">Mauritius (MU) 모리셔스</a></li>
+                        <li class="languages"><a href="search_country.html?city=Maldives">Maldives (MV) 몰디브</a></li>
+                        <li class="languages"><a href="search_country.html?city=Malawi">Malawi (MW) 말라위</a></li>
+                        <li class="languages"><a href="search_country.html?city=Mexico">Mexico (MX) 멕시코</a></li>
+                        <li class="languages"><a href="search_country.html?city=Malaysia">Malaysia (MY) 말레이지아</a></li>
+                        <li class="languages"><a href="search_country.html?city=Mozambique">Mozambique (MZ) 모잠비크</a>
+                        </li>
+                        <li class="languages"><a href="search_country.html?city=Namibia">Namibia (NA) 나미비아</a></li>
+                        <li class="languages"><a href="search_country.html?city=Newcaledonia">Newcaledonia NC
+                                (프랑)스(뉴칼레도니아섬</a>)</li>
+                        <li class="languages"><a href="search_country.html?city=Niger">Niger (NE) 니제르</a></li>
+                        <li class="languages"><a href="search_country.html?city=Norfolkisland">Norfolkisland NF
+                                (오스)트레일리아(노퍽섬</a>)</li>
+                        <li class="languages"><a href="search_country.html?city=Nigeria">Nigeria (NG) 나이지리아</a></li>
+                        <li class="languages"><a href="search_country.html?city=Nicaragua">Nicaragua (NI) 니카라과</a></li>
+                        <li class="languages"><a href="search_country.html?city=Netherlands">Netherlands NL
+                                (네덜)란드(네델란드</a>)</li>
+                        <li class="languages"><a href="search_country.html?city=Norway">Norway (NO) 노르웨이</a></li>
+                        <li class="languages"><a href="search_country.html?city=Nepal">Nepal (NP) 네팔</a></li>
+                        <li class="languages"><a href="search_country.html?city=Newzealand">Newzealand (NZ) 뉴질랜드</a>
+                        </li>
+                        <li class="languages"><a href="search_country.html?city=Oman">Oman (OM) 오만</a></li>
+                        <li class="languages"><a href="search_country.html?city=Panama">Panama(Rep) (PA) 파나마</a></li>
+                        <li class="languages"><a href="search_country.html?city=Peru">Peru (PE) 페루</a></li>
+                        <li class="languages"><a href="search_country.html?city=Frenchpolynesia">Frenchpolynesia PF
+                                (프랑)스(폴리네시아</a>)</li>
+                        <li class="languages"><a href="search_country.html?city=Papuanewguinea">Papuanewguinea (PG)
+                                파푸아뉴기니</a></li>
+                        <li class="languages"><a href="search_country.html?city=Philippines">Philippines (PH) 필리핀</a>
+                        </li>
+                        <li class="languages"><a href="search_country.html?city=Pakistan">Pakistan (PK) 파키스탄</a></li>
+                        <li class="languages"><a href="search_country.html?city=Poland">Poland(Rep) (PL) 폴란드</a></li>
+                        <li class="languages"><a href="search_country.html?city=Puertorico">Puertorico PR
+                                (미국)(푸에르토리코섬</a>)</li>
+                        <li class="languages"><a href="search_country.html?city=Portugal">Portugal (PT) 포르투갈</a></li>
+                        <li class="languages"><a href="search_country.html?city=Palau">Palau PW (미국)(팔라우섬</a>)</li>
+                        <li class="languages"><a href="search_country.html?city=Paraguay">Paraguay (PY) 파라과이</a></li>
+                        <li class="languages"><a href="search_country.html?city=Qatar">Qatar (QA) 카타르</a></li>
+                        <li class="languages"><a href="search_country.html?city=Reunion">Reunion RE (프랑)스(레위니옹섬</a>)
+                        </li>
+                        <li class="languages"><a href="search_country.html?city=Romania">Romania (RO) 루마니아</a></li>
+                        <li class="languages"><a href="search_country.html?city=Russianfederation">Russianfederation
+                                (RU) 러시아</a></li>
+                        <li class="languages"><a href="search_country.html?city=Rwanda">Rwanda (RW) 르완다</a></li>
+                        <li class="languages"><a href="search_country.html?city=Saudiarabia">Saudiarabia (SA)
+                                사우디아라비아</a></li>
+                        <li class="languages"><a href="search_country.html?city=Solomonislands">Solomonislands (SB)
+                                솔로몬아일란드</a></li>
+                        <li class="languages"><a href="search_country.html?city=Seychelles">Seychelles (SC) 세이셸</a></li>
+                        <li class="languages"><a href="search_country.html?city=Sweden">Sweden (SE) 스웨덴</a></li>
+                        <li class="languages"><a href="search_country.html?city=Singapore">Singapore (SG) 싱가포르</a></li>
+                        <li class="languages"><a href="search_country.html?city=Slovenia">Slovenia (SI) 슬로베니아</a></li>
+                        <li class="languages"><a href="search_country.html?city=Slovakia">Slovakia (SK) 슬로바키아</a></li>
+                        <li class="languages"><a href="search_country.html?city=Sierraleone">Sierraleone (SL) 시에라리온</a>
+                        </li>
+                        <li class="languages"><a href="search_country.html?city=Sanmarino">Sanmarino (SM) 산마리노</a></li>
+                        <li class="languages"><a href="search_country.html?city=Senegal">Senegal (SN) 세네갈</a></li>
+                        <li class="languages"><a href="search_country.html?city=Suriname">Suriname (SR) 수리남</a></li>
+                        <li class="languages"><a href="search_country.html?city=Elsalvador">Elsalvador (SV) 엘살바도르</a>
+                        </li>
+                        <li class="languages"><a href="search_country.html?city=Swaziland">Swaziland (SZ) 스와질랜드</a></li>
+                        <li class="languages"><a
+                                href="search_country.html?city=Turksandcaicosislands">Turksandcaicosislands TC
+                                (영국)(터크스케이코스제도</a>)</li>
+                        <li class="languages"><a href="search_country.html?city=Chad">Chad (TD) 차드</a></li>
+                        <li class="languages"><a href="search_country.html?city=Togo">Togo (TG) 토고</a></li>
+                        <li class="languages"><a href="search_country.html?city=Thailand">Thailand TH (타이)(태국</a>)</li>
+                        <li class="languages"><a href="search_country.html?city=Tajikistan">Tajikistan (TJ) 타지키스탄</a>
+                        </li>
+                        <li class="languages"><a href="search_country.html?city=Tunisia">Tunisia (TN) 튀니지</a></li>
+                        <li class="languages"><a href="search_country.html?city=Tonga">Tonga (TO) 통가</a></li>
+                        <li class="languages"><a href="search_country.html?city=Turkey">Turkey (TR) 터키</a></li>
+                        <li class="languages"><a href="search_country.html?city=Trinidadandtobago">Trinidadandtobago
+                                (TT) 트리니다드토바고</a></li>
+                        <li class="languages"><a href="search_country.html?city=Tuvalu">Tuvalu (TV) 투발루</a></li>
+                        <li class="languages"><a href="search_country.html?city=Taiwan">Taiwan TW (타이)완(대만</a>)</li>
+                        <li class="languages"><a href="search_country.html?city=Tanzania">Tanzania(Unitedrep) (TZ)
+                                탄자니아</a></li>
+                        <li class="languages"><a href="search_country.html?city=Ukraine">Ukraine (UA) 우크라이나</a></li>
+                        <li class="languages"><a href="search_country.html?city=Uganda">Uganda (UG) 우간다</a></li>
+                        <li class="languages"><a href="search_country.html?city=U">U.S.A (US) 미국</a></li>
+                        <li class="languages"><a href="search_country.html?city=Uruguay">Uruguay (UY) 우루과이</a></li>
+                        <li class="languages"><a href="search_country.html?city=Uzbekistan">Uzbekistan (UZ) 우즈베크</a>
+                        </li>
+                        <li class="languages"><a
+                                href="search_country.html?city=Saintvincentandthegrenadines">Saintvincentandthegrenadines
+                                (VC) 세인트빈센트그레나딘</a></li>
+                        <li class="languages"><a href="search_country.html?city=Venezuela">Venezuela (VE) 베네수엘라</a></li>
+                        <li class="languages"><a
+                                href="search_country.html?city=Virginislandsbritish">Virginislandsbritish VG
+                                (영국)(버진제도</a>)</li>
+                        <li class="languages"><a href="search_country.html?city=Virginislandsu">Virginislandsu.S. VI
+                                (미국)(버진제도</a>)</li>
+                        <li class="languages"><a href="search_country.html?city=Vietnam">Vietnam (VN) 베트남</a></li>
+                        <li class="languages"><a href="search_country.html?city=Vanuatu">Vanuatu (VU) 바누아투</a></li>
+                        <li class="languages"><a href="search_country.html?city=Yemen">Yemen (YE) 예멘</a></li>
+                        <li class="languages"><a href="search_country.html?city=Southafrica">Southafrica (ZA)
+                                남아프리카공화국</a></li>
+                        <li class="languages"><a href="search_country.html?city=Zambia">Zambia (ZM) 잠비아</a></li>
+                        <li class="languages"><a href="search_country.html?city=Zimbabwe">Zimbabwe (ZW) 짐바브웨</a></li>
+                    </ul>
+                    <p class="noItemsText">No items to display</p>
+                </div>
+
+                <script>
+                    function search() {
+                        let input = document.querySelector("input").value.toLowerCase()
+                        let list = document.querySelectorAll("ul > li")
+                        let noItemsText = document.querySelector(".noItemsText")
+                        let displayCounter = 0
+
+                        // console.log(((list[0].innerHTML).toLowerCase()).includes("pyt", 0))
+                        list.forEach((lang) => {
+                            if ((lang.innerHTML.toLowerCase()).includes(input, 0) === false) {
+                                lang.style.display = "none";
+                            } else {
+                                lang.style.display = "list-item";
+                            }
+
+                            if (lang.style.display === "none") {
+                                displayCounter++;
+                            }
+                        });
+
+                        if (displayCounter === list.length) {
+                            list.innerHTML = "No items to display";
+                            noItemsText.style.display = "initial"
+                        } else {
+                            noItemsText.style.display = "none"
+                        }
+                    }
+                </script>
+                <style>
+                    h1 {
+                        text-shadow:
+                            2px 3px 4px #456,
+                            3px 4px 5px #654;
+                    }
+
+                    input {
+                        /* height: 1.5rem; */
+                        max-width: 300px;
+                        width: fit-content;
+                        margin: 1rem auto;
+                        outline: none;
+                        padding: 10px;
+                        font-size: 1.1rem;
+                    }
+
+                    .search_content {
+                        /* border: 3px solid black; */
+                        overflow: auto;
+                        position: relative;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        left: 0;
+                        top: 0;
+                        height: auto;
+                        min-width: 350px;
+                        margin-bottom: 50px;
+                    }
+
+
+                    .languages {
+                        /* background-color: #f5deb3; */
+                        font-size: 1rem;
+                        margin: 2px auto;
+                        min-width: 333px;
+                        padding-left: 10px;
+                    }
+
+                    .languages:hover {
+                        background-color: #f5deb3aa;
+                    }
+
+                    .noItemsText {
+                        display: none;
+                    }
+                </style>
+            </div>
+            <div class="search_menu">
+
+            </div>
+        </nav>
+        <div class="inform">
+            <!-- center text -->
+        </div>
+
+        <script>
+            var menuBtn = document.querySelector('.menu-btn');
+            var body = document.querySelector('body');
+            var nav = document.querySelector('nav');
+            var lineOne = document.querySelector('nav .menu-btn .line--1');
+            var lineTwo = document.querySelector('nav .menu-btn .line--2');
+            var lineThree = document.querySelector('nav .menu-btn .line--3');
+            var link = document.querySelector('nav .nav-links');
+            menuBtn.addEventListener('click', () => {
+                nav.classList.toggle('nav-open');
+                body.classList.toggle('move_to_right');
+                lineOne.classList.toggle('line-cross');
+                lineTwo.classList.toggle('line-fade-out');
+                lineThree.classList.toggle('line-cross');
+                link.classList.toggle('fade-in');
+            })
+        </script>
+
+    </div>
+
+    <div class="top_nav">
+        <div class="flex_box">
+            <div class="sub_box">
+                <p><b>Feels Like</b></p>
+                <p><span class="top_feels_like_txt"></span> °</p>
+            </div>
+            <div class="sub_box">
+                <p><b>High / Low</b></p>
+                <p><span class="top_temp_max_txt"></span> ° / <span class="top_temp_min_txt"></span> °</p>
+            </div>
+            <div class="sub_box">
+                <p><b>Humidity</b></p>
+                <p><span class="top_humidity_txt"></span>%</p>
+            </div>
+            <div class="sub_box">
+                <p><b>Wind</b></p>
+                <p><span class="top_wind_speed_txt"></span><img class="wind_arrow" src="./svg/wind_arrow.svg" alt="">
+                </p>
+                <p><span class="top_wind_deg_txt"></span></p>
+            </div>
+            <div class="sub_box">
+                <p><b>Visibility</b></p>
+                <p><span class="top_visibility_txt"></span></p>
+            </div>
+            <div class="sub_box">
+                <p><b>Sunrise</b></p>
+                <p><span class="top_sunrise_txt"></span></p>
+                <p><b>Sunset</b></p>
+                <p><span class="top_sunset_txt"></span></p>
+            </div>
+            <div class="sub_box">
+                <p><b>Air Pollution</b></p>
+                <p><span class="top_air_pollution_txt"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="first_screen">
+        <div class="gif_box">
+        </div>
+        <div class="gif_txt">
+            <p id="11">1</p>
+            <p id="22">2</p>
+            <p id="33">3</p>
+            <p id="44">4</p>
+            <p id="55">5</p>
+            <p>What's the weather like today?</p>
+            <!--             <script>
+                document.writeln(main_api_URL);
+                document.writeln(hourly_api_URL);
+            </script> -->
+        </div>
+    </div>
+
+    <!-- main -->
+    <main>
+        <div class="public_box_main">
+            <div class="public_box_mainTxt">
+                <p class="txtAlign_right"><span class="date_txt"></span></p>
+                <p class="txtAlign_right"><span class="city_txt"></span><span class="country_txt"></span></p>
+
+                <div class="icons">
+                    <!-- Cloudy -->
+                    <span class="main_icons">
+
+                    </span>
+                    <!--                     <div class="element">
+                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 60.7 40"
+                                style="enable-background:new 0 0 60.7 40;" xml:space="preserve">
+                                <g id="Cloud_1">
+                                    <g id="White_cloud_1">
+                                        <path id="XMLID_2_" class="white"
+                                            d="M47.2,40H7.9C3.5,40,0,36.5,0,32.1l0,0c0-4.3,3.5-7.9,7.9-7.9h39.4c4.3,0,7.9,3.5,7.9,7.9v0 C55.1,36.5,51.6,40,47.2,40z" />
+                                        <circle id="XMLID_3_" class="white" cx="17.4" cy="22.8" r="9.3" />
+                                        <circle id="XMLID_4_" class="white" cx="34.5" cy="21.1" r="15.6" />
+                                        <animateTransform attributeName="transform" attributeType="XML" dur="6s"
+                                            keyTimes="0;0.5;1" repeatCount="indefinite" type="translate" values="0;5;0"
+                                            calcMode="linear">
+                                        </animateTransform>
+                                    </g>
+                                    <g id="Gray_cloud_1">
+                                        <path id="XMLID_6_" class="gray"
+                                            d="M54.7,22.3H33.4c-3.3,0-6-2.7-6-6v0c0-3.3,2.7-6,6-6h21.3c3.3,0,6,2.7,6,6v0 C60.7,19.6,58,22.3,54.7,22.3z" />
+                                        <circle id="XMLID_7_" class="gray" cx="45.7" cy="10.7" r="10.7" />
+                                        <animateTransform attributeName="transform" attributeType="XML" dur="6s"
+                                            keyTimes="0;0.5;1" repeatCount="indefinite" type="translate" values="0;-3;0"
+                                            calcMode="linear">
+                                        </animateTransform>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div> -->
+                    <p class="temp_txt"><span class="main_temp_c"></span><span class="main_temp_deg">°</span><span
+                            class="main_temp_f"></span>
+                    </p>
+                </div>
+                <p class="than_txt">3℃ highest than yesterday</p>
+                <div class="today_info_box">
+                    <div>
+                        <p><b>Feels Like</b></p>
+                        <p><span class="feels_like_txt"></span> °</p>
+                    </div>
+                    <div>
+                        <p><b>High / Low</b></p>
+                        <p><span class="temp_max_txt"></span> ° / <span class="temp_min_txt"></span> °</p>
+                    </div>
+                    <div>
+                        <p><b>Humidity</b></p>
+                        <p><span class="humidity_txt"></span>%</p>
+                    </div>
+                    <div>
+                        <p><b>Wind</b></p>
+                        <p><span class="wind_speed_txt"></span></p>
+                        <p><img class="wind_arrow" src="./svg/wind_arrow.svg" alt=""></p>
+                        <p><span class="wind_deg_txt"></span></p>
+                        <p><span class="wind_gust_txt"></span></p>
+                    </div>
+                    <div>
+                        <p><b>Visibility</b></p>
+                        <p><span class="visibility_txt"></span></p>
+                        <p>10.0km</p>
+                    </div>
+                    <div>
+                        <p><b>Sunrise</b></p>
+                        <p><span class="sunrise_txt"></span></p>
+                    </div>
+                    <div>
+                        <p><b>Sunset</b></p>
+                        <p><span class="sunset_txt"></span></p>
+                    </div>
+                    <div>
+                        <p><b>Air Pollution</b></p>
+                        <p><span class="air_pollution_txt"></span></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="public_box">
+            <div class="forecast_txt_box">
+                <h3><b>3-hour Forecast 5 days</b></h3>
+            </div>
+            <div class="swiper">
+
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <script type="text/javascript">
+                        for (var i = 0; i < HOURLY_3; i++) {
+                            document.writeln("<div class='time_" + i + " swiper-slide'>");
+                            document.writeln("<p><span class=date_" + i + "></span></p>");
+                            document.writeln("<p><span class=hours_" + i + "></span>:00</p>");
+                            document.writeln("<div class='svg_box'><span class=svg_" + i + "></span></div>");
+                            document.writeln("<p><span class=temp_" + i + "></span> °</p>");
+                            document.writeln("<p><span class=\"desc_txt_" + i + " desc_txt_font\"></span></p>");
+                            document.writeln("</div>");
+                        }
+                    </script>
+                </div>
+                <!-- <div class="swiper-pagination"></div> -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+
+        <div class="public_box">
+            <div class=" days_box">
+                <!-- <div class="swiper"> -->
+                <!-- Additional required wrapper -->
+                <div class="sel_weather">
+                    <h3>Detail forecast</h3>
+                    <p>Dec 30, 06:00pm</p>
+                    <p>Jamwon-dong, KR</p>
+                    <p>1°C</p>
+                    <p>Feels like 1°C. Clear sky. Light air</p>
+                    <p>0.9m/s NNW</p>
+                    <p>1032hPa</p>
+                    <p>Humidity : 80%</p>
+                    <p>Dew point : -2°C</p>
+                    <p>Visibility : 10.0km</p>
+
+
+                </div>
+
+                <div class="sel_weather_txt">
+
+                    <p>Besides basic Air Quality Index, the API returns data about polluting gases, such as Carbon
+                        monoxide (CO), Nitrogen monoxide (NO), Nitrogen dioxide (NO2), Ozone (O3), Sulphur dioxide
+                        (SO2), Ammonia (NH3), and particulates (PM2.5 and PM10).
+                    </p>
+                    <br>
+                    <p>Air pollution forecast is available for 5 days with hourly granularity. Historical data is
+                        accessible from 27th November 2020.</p>
+                    <br>
+                    <p>Here is a description of Air Quality index levels:</p>
+                    <br>
+                    <table class="table_container">
+                        <thead>
+                            <tr class="under_line">
+                                <th>
+                                    Qualitative name
+                                </th>
+                                <th>Index</th>
+                                <th colspan="4">Pollutant concentration in μg/m3</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+                                    NO2
+                                </td>
+                                <td>
+                                    PM10
+                                </td>
+                                <td>
+                                    O3
+                                </td>
+                                <td>
+                                    PM25 (optional)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="air_pollution_green">Good</td>
+                                <td>1</td>
+                                <td>0-50</td>
+                                <td>0-25</td>
+                                <td>0-60</td>
+                                <td>0-15</td>
+                            </tr>
+                            <tr>
+                                <td class="air_pollution_yellow">Fair</td>
+                                <td>2</td>
+                                <td>50-100</td>
+                                <td>25-50</td>
+                                <td>60-120</td>
+                                <td>15-30</td>
+                            </tr>
+                            <tr>
+                                <td>Moderate</td>
+                                <td>3</td>
+                                <td>100-200</td>
+                                <td>50-90</td>
+                                <td>120-180</td>
+                                <td>30-55</td>
+                            </tr>
+                            <tr>
+                                <td class="air_pollution_amber">Poor</td>
+                                <td>4</td>
+                                <td>200-400</td>
+                                <td>90-180</td>
+                                <td>180-240</td>
+                                <td>55-110</td>
+                            </tr>
+                            <tr>
+                                <td class="air_pollution_red">Very Poor</td>
+                                <td>5</td>
+                                <td>>400</td>
+                                <td>>180</td>
+                                <td>>240</td>
+                                <td>>110</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+
+
+
+            </div>
+        </div>
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            <!--                         <script type="text/javascript">
+                    for (var i = 1; i < 30; i++) {
+                        document.writeln("<div class='days_" + i + " swiper-slide'>");
+                        if (i % 7 == 1) document.writeln("<p id='dayOfTheWeek'>Mon.</p>");
+                        else if (i % 7 == 2) document.writeln("<p id='dayOfTheWeek'>Tue.</p>");
+                        else if (i % 7 == 3) document.writeln("<p id='dayOfTheWeek'>Wed.</p>");
+                        else if (i % 7 == 4) document.writeln("<p id='dayOfTheWeek'>Thu.</p>");
+                        else if (i % 7 == 5) document.writeln("<p id='dayOfTheWeek'>Fri.</p>");
+                        else if (i % 7 == 6) document.writeln("<p id='dayOfTheWeek'>Sat.</p>");
+                        else if (i % 7 == 0) document.writeln("<p id='dayOfTheWeek'>Sun.</p>");
+                        document.writeln("<p>" + i + "</p>");
+                        document.writeln("<div class=svg_box>" + i + "</div>");
+                        document.writeln("</div>");
+                    }
+                </script> -->
+            <!-- </div> -->
+            <!-- <div class="swiper-pagination"></div> -->
+            <!--                     <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div> -->
+        </div>
+
+        <div class="public_box_02">
+            <div class="location_box">
+                <div class="location_part_map">
+                    <!-- map -->
+                    <div id="map"></div>
+
+                    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+                    <script src="/maps/leaflet/leaflet-src.js"></script>
+                    <script src="/maps/apps/js/leaflet-owm.js"></script>
+                    <script src="/maps/apps/js/iconLayer.js"></script>
+                    <script>
+                        var providers = {};
+
+                        providers['OSM'] = {
+                            title: 'OSM',
+                            icon: 'img/layers-osm.png',
+                            layer: L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                                maxZoom: 18,
+                                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                            })
+                        };
+
+                        providers['Satellite'] = {
+                            title: 'MODIS',
+                            icon: 'img/layers-satellite.png',
+                            layer: L.tileLayer('http://{s}.sat.owm.io/sql/{z}/{x}/{y}?select=b1,b4,b3&from=modis&order=last&color=modis&appid=d22d9a6a3ff2aa523d5917bbccc89211', {
+                                maxZoom: 19,
+                                attribution: '&copy; <a href="http://owm.io">VANE</a>'
+                            })
+                        };
+
+
+                    </script>
+                    <script>
+                        var map = L.map('map').setView([60, 50], 3);
+
+
+                        //http://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=d9cfe451d5a775abaf178aec4951b4b0
+
+                        var Temp = L.tileLayer('http://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=d22d9a6a3ff2aa523d5917bbccc89211', {
+                            maxZoom: 18,
+                            attribution: '&copy; <a href="http://owm.io">VANE</a>',
+                            id: 'temp'
+                        }),
+
+                            Precipitation = L.tileLayer('http://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=d22d9a6a3ff2aa523d5917bbccc89211', {
+                                maxZoom: 18,
+                                attribution: '&copy; <a href="http://owm.io">VANE</a>'
+                            }),
+
+                            Wind = L.tileLayer('http://tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid=d22d9a6a3ff2aa523d5917bbccc89211', {
+                                maxZoom: 18,
+                                attribution: '&copy; <a href="http://owm.io">VANE</a>'
+                            }),
+
+                            Pressure = L.tileLayer('http://tile.openweathermap.org/map/pressure_new/{z}/{x}/{y}.png?appid=d22d9a6a3ff2aa523d5917bbccc89211', {
+                                maxZoom: 18,
+                                attribution: '&copy; <a href="http://owm.io">VANE</a>'
+                            }),
+
+
+                            Clouds = L.tileLayer('http://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=d22d9a6a3ff2aa523d5917bbccc89211', {
+                                maxZoom: 18,
+                                attribution: '&copy; <a href="http://owm.io">VANE</a>'
+                            });
+
+                        var owm = new L.OWMLayer({ key: 'b1b15e88fa797225412429c1c50c122a1' });
+                        map.addLayer(owm);
+
+                        Temp.addTo(map);
+
+                        var overlays = { "Temperature": Temp, "Precipitation": Precipitation, "Clouds": Clouds, "Pressure": Pressure, "Wind": Wind };
+                        L.control.layers(overlays, null, { collapsed: false }).addTo(map);
+
+                        var layers = [];
+                        for (var providerId in providers) {
+                            layers.push(providers[providerId]);
+                        }
+
+                        L.control.iconLayers(layers).addTo(map);
+                    </script>
+                </div>
+            </div>
+            <!--             <div class="location_part_temp">
+                <table>
+                    <tr>
+                        <td>
+                            time
+                        </td>
+                        <td>
+                            icons
+                        </td>
+                        <td>
+                            temp.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            time
+                        </td>
+                        <td>
+                            icons
+                        </td>
+                        <td>
+                            temp.
+                        </td>
+                    </tr>
+                </table>
+            </div> -->
+        </div>
+
+
+
+
+        <!-- //옵션 설정 -->
+        <script>
+            var swiper = new Swiper(".swiper", {
+                spaceBetween: 0,    // 슬라이드 사이 여백
+                slidesPerView: 7, // 한 슬라이드에 보여줄 갯수
+                centeredSlides: false,    //센터모드
+                autoplay: false/* {     //자동슬라이드 (false-비활성화)
+                                    delay: 2500, // 시간 설정
+                                    disableOnInteraction: false, // false-스와이프 후 자동 재생
+                                } */,
+                loop: false,   // 슬라이드 반복 여부
+                loopAdditionalSlides: 1,
+                // 슬라이드 반복 시 마지막 슬라이드에서 다음 슬라이드가 보여지지 않는 현상 수정
+                pagination: { // 호출(pager) 여부
+                    el: ".swiper-pagination", //버튼을 담을 태그 설정
+                    clickable: true, // 버튼 클릭 여부
+                },
+                navigation: {   // 버튼
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+            });
+        </script>
+
+
+        <section>
+            <div class="top_bg">
+            </div>
+        </section>
+        <div class="middle_color_box01">
+            <div class="middle_color_txt01">
+                <p>Weather forecasts, nowcasts and <br> history in a fast and elegant way</p>
+            </div>
+        </div>
+
+        <section>
+            <div class="industries_bg">
+                <h2>Industries</h2>
+                <p class="industries_main_txt">
+                    We offer special products for every industry, which take into account their features and allow
+                    reducing additional business costs, optimizing business processes and effectively planning work.</p>
+            </div>
+            <div class="industries_cont_box">
+                <div class="industries_cont01">
+                    <p class="bold_txt">Insurance</p>
+                    <p>Employs historical weather data to verify claims at the time of insurance event. Management of
+                        existing risks via forecasts and current weather data.</p>
+                </div>
+                <div class="industries_cont02">In 2016 alone, windstorms cost the UK insurance industry approximately
+                    £1bn,
+                    mainly through large
+                    numbers of small insurance claims, with the average cost of around £700 per claim.
+
+                    This is exactly the area where OpenWeather “History API 40 years by timestamp” can be particularly
+                    nesessary. First of all, it provides a cost-effective way for the insurance industry to gain instant
+                    access to accurate weather information. This information can be used to streamline the claims
+                    procedure
+                    giving increased customer satisfaction, reducing research costs and fraud, and eliminating potential
+                    mistakes. It also gives both a general overview of the prevailing weather conditions, along with
+                    full
+                    and specific details about temperature, pressure, wind speed and direction, rain and snow volumes
+                    etc.
+                </div>
+            </div>
+            <div class="industries_cont_box">
+                <div class="industries_cont01">
+                    <p class="bold_txt">Retail analytics</p>
+                    <p>Sales prediction models in weather sensitive industries (food, beverage, entertainment). Complex
+                        analysis of weather impact on a particular business/project.
+                    </p>
+                </div>
+                <div class="industries_cont02">
+                    <p>From temperature-driven customer desires to delays in supply chains, weather impacts the retail
+                        industry in a significant way. That's why innovative retailers are moving to integrate weather
+                        analytics in all areas of their businesses, with the ultimate goals of maximising sales,
+                        predicting
+                        customer’s demand and refining operational efficiency.</p>
+
+
+                    <p><b class="main_color_txt">Demand Forecasting</b>
+                        <br>
+                        Without a doubt, the most valuable use case for weather data in the retail
+                        industry is the ability
+                        to far more accurately forecast customer demands by taking into account expected weather
+                        conditions.
+                        Whether hot or cold, rainy or dry, sunny or overcast — customers may purchase lesser or greater
+                        quantities of certain products, on a seasonal or even day-to-day timeframe. The first step in
+                        generating these insights is to create a statistical model that shows how sales have been
+                        affected
+                        by meteorological conditions in the past. To this end, OpenWeather's Historical Weather API
+                        provides
+                        hourly weather readings for up to 40 years in the past for any location, which can be
+                        cross-referenced against sales records.
+                    </p>
+
+
+                    <p> <b class="main_color_txt">Seasonal</b>
+                        <br>
+                        Weather-based sales models are particularly valuable across longer timeframes,
+                        especially seasonal
+                        ones. For example, as summer approaches, demand for warm clothing drops while demand for outdoor
+                        sporting equipment rises. By feeding data from OpenWeather's 30 Day Climate Forecast into sales
+                        models, retailers can better predict and prepare for changing demands, such as by placing orders
+                        with suppliers sooner or later.
+                    </p>
+
+
+                    <p> <b class="main_color_txt">Day-to-day</b>
+                        <br>Analytical sales models can also be used to forecast short-term demand, which may
+                        inform managerial decisions on a local level. For example, in anticipation of winter's first
+                        freeze,
+                        store managers
+                        may instruct employees to stock shelves with additional antifreeze and ice scrapers. Here,
+                        OpenWeather's Daily Weather Forecast can provide the weather data to accurately forecast demand
+                        based on sales models.
+                    </p>
+                </div>
+            </div>
+            <div class="industries_cont_box">
+                <div class="industries_cont01">
+                    <p class="bold_txt">Automotive</p>
+                    <p>
+                        Short term forecasts to set up severe weather alerts for efficient route planning and minimizing
+                        risks of loss (delay/cargo damage)</p>
+                </div>
+                <div class="industries_cont02">
+                    <p>The transportation industry, both in itself and as a part of logistics, is highly dependent on
+                        short-term weather events. Timely and accurate weather information for the coming period is
+                        important
+                        both from the point of view of driver safety and for calculating optimal routes, and even helps
+                        to
+                        save
+                        petrol.</p>
+
+                    <p>Information about when rain will begin or end – and in which part of the city, or in which
+                        village –
+                        will help to build the most optimal route, increase safety and make the functioning of the whole
+                        system
+                        more efficient. Obviously, such information should be timely, accurate and easily accessible.
+                    </p>
+
+                    <p> Enhance your short-term planning with Road Risk API by exploiting an accurate minute-by-minute
+                        forecast
+                        for 2 hours, hourly weather forecast and national alerts for five-days. The weather data is
+                        provided
+                        for
+                        any moment of time for 5 days ahead and 5 days back, covering any destination and any point
+                        along
+                        the
+                        route.</p>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="middle_color_box02">
+                <div class="middle_box02">
+                    <p class="white_title_txt">
+                        Use our Professional collections to get extended weather data for any coordinates on the globe
+                    </p>
+                    <p class="white_cont_txt">For professionals and specialists with middle and large sized project, we
+                        recommend our Professional
+                        collections. They include either an extended data sets, or various tools for receiving and
+                        displaying
+                        data, etc.</p>
+                    <link rel="stylesheet"
+                        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+                    <link rel="stylesheet"
+                        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+                    <div class="middle_box02_container">
+                        <div>
+                            <span class="material-symbols-outlined md-light">
+                                sunny_snowing
+                            </span>
+                            <p>Current<br>Weather </p>
+                        </div>
+                        <div>
+                            <span class="material-symbols-outlined md-light">
+                                update
+                            </span>
+                            <p> Hourly<br>
+                                forecast<br>
+                                (4 days)</p>
+                        </div>
+                        <div>
+                            <span class="material-symbols-outlined md-light">
+                                calendar_month
+                            </span>
+                            <p> Daily<br>
+                                forecast<br>
+                                (16 days)</p>
+                        </div>
+                        <div>
+                            <span class="material-symbols-outlined md-light">
+                                event_repeat
+                            </span>
+                            <p> Climatic<br>
+                                forecast<br>
+                                (30 days)</p>
+
+                        </div>
+                        <div>
+                            <span class="material-symbols-outlined md-light">
+                                free_cancellation
+                            </span>
+                            <p> Historical<br>
+                                weather<br>
+                                (1 month, 1 year)</p>
+                        </div>
+                    </div>
+
+                    <p class="white_cont_txt"><b>Called by:</b><br>
+                        geographic coordinates, zip/post code, city name, city ID, number of cities (only in current
+                        weather
+                        and
+                        forecast APIs</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="Weather_data_box_bg1">
+            <div class="Weather_data_box">
+                <div class="Weather_data_box_cont1">
+
+                    <div class="h3-mbottom">
+                        <h3 class="coral_txt">Weather data</h3>
+                        <p class="font-size-30">Weather for any geographic coordinates on the globe</p>
+                    </div>
+
+                    <div class="Weather_data_box_container01">
+                        <div><span class="material-symbols-outlined md-size-150"> history_toggle_off </span>
+                            <p> Historical<br>
+                                weather<br></p>
+                        </div>
+                        <div> <span class="material-symbols-outlined md-size-50 md-mx-80"> arrow_back </span></div>
+                        <div> <span class="material-symbols-outlined md-size-200"> database </span>
+                            <p>Current weather data</p>
+                        </div>
+                        <div> <span class="material-symbols-outlined md-size-50 md-mx-80"> arrow_forward </span></div>
+                        <div><span class="material-symbols-outlined md-size-150"> travel_explore </span>
+                            <p>Forecasted<br>weather data</p>
+                        </div>
+                    </div>
+
+                    <div class="Weather_data_box_txt">
+                        <p>For each point on the globe, we provide historical, current and forecasted weather data via
+                            light-speed APIs.</p>
+
+                        <p><b>Minute-by-minute forecast</b></p>
+
+                        <p><b>Other forecasts:</b>
+                            <br> hourly (4-day), daily (16-day), 30-day climate forecast
+                        </p>
+
+                        <p><b>Historical data</b>
+                            <br>with 40-year archive for any coordinates
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <section class="Weather_data_box_bg2">
+            <div class="Weather_data_box">
+                <div class="Weather_data_box_container02">
+                    <div>
+                        <span class="material-symbols-outlined md-size-250 md-color-yellow">
+                            bar_chart
+                        </span>
+
+                        <p><span class="material-symbols-outlined aab">
+                                label
+                            </span>1 min 2 hours (Global)</p>
+                        <p><span class="material-symbols-outlined aab">
+                                label
+                            </span>Hourly forecast for 4 days (Global)</p>
+                        <p><span class="material-symbols-outlined aab">
+                                label
+                            </span>Daily forecast for 16 days (Global)</p>
+                        <p><span class="material-symbols-outlined aab">
+                                label
+                            </span>Climate forecast for 30 days (Global)</p>
+                    </div>
+                    <div class="Weather_data_box_container02_txt">
+                        <div class="h3-mbottom">
+                            <h3 class="coral_txt">Weather data</h3>
+                            <p class="font-size-30">Forecasted weather data</p>
+                        </div>
+                        <p>
+                            Detailed forecasts available by city name, city ID, geographic coordinates or postal/ZIP
+                            code.
+
+                        </p>
+                        <div class="my-40">
+                            <p><b>
+                                    How to obtain</b><br>
+                                <a href="">API</a><br>
+                                <a href="">Bulks</a>
+                            </p>
+                        </div>
+
+                        <p>A variety of subscriptions with various limits on calls/min, data availability, and service
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="Weather_data_box">
+                <div class="h3-mbottom">
+                    <h3 class="coral_txt">Weather data</h3>
+                    <p class="font-size-30">Historical weather data</p>
+                </div>
+                <br>
+                <div class="Weather_data_box_container03">
+                    <div>
+                        <p> <b>How to obtain</b><br>
+                            <b>Marketplace of prepared data sets</b><br>
+                            (cities, zip codes, grids)
+                        </p>
+                        <br>
+                        <p> <b>On-the-fly bulks</b><br>
+                            for customized lists of coordinates</p>
+                        <br>
+                        <p> <b>APIs</b><br>(city-based, up to 1 year back; subscriptions with various limits on
+                            calls/min, data
+                            availability, and service)</p>
+                    </div>
+                    <div>
+                        <p class="Weather_data_box_container03_txt">
+
+                            Our new technology, Time Machine, has allowed us to
+                            enhance data in the Historical Weather
+                            Collection: historical weather data is now available for any coordinates and the depth of
+                            historical data has been extended to 40 years.</p>
+                        <div class="Weather_data_box_container03_1">
+                            <div class="circle_01">
+                                <p>
+                                    <b>Each coordinate</b><br>(40 years, 1hours, global)
+                                </p>
+                            </div>
+                            <div class="circle_01">
+                                <p><b>Grids</b><br>
+                                    (1km, 5km, 10km, and customized global)</p>
+                            </div>
+                            <div class="circle_01">
+                                <p><b>Zip codes</b><br>(~42,000 US)</p>
+                            </div>
+                            <div class="circle_01">
+                                <p><b>Cities</b><br>(> 37,000, global)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </section>
+
+        <section class="Weather_data_box_bg2">
+            <div class="Weather_data_box">
+                <div class="h3-mbottom">
+                    <h3 class="coral_txt">Weather data</h3>
+                    <p class="font-size-30">Current weather data</p>
+                </div>
+                <div class="Weather_data_box_container04">
+
+                    <div class="Weather_data_box_container04_txt">
+
+                        <p> Access current weather data for any location on Earth including over 200,000 cities! The
+                            data is frequently updated based on the global and local weather models, satellites, radars
+                            and a vast network of weather stations.
+                        </p>
+                    </div>
+                    <div>
+
+                        <p> <b>how to obtain</b></p>
+                        <br>
+                        <p> <b>APIs</b><br>
+                            (subscriptions with various limits on calls/min, data availability, and service)
+                        </p>
+                        <br>
+                        <p> <b>Prepared bulks</b><br>
+                            (cities, zip codes)</p>
+                    </div>
+                </div>
+                <div class="Weather_data_box_container04_1">
+                    <div class="color_circle">
+                        <p>Hourly Forecast 4 days</p>
+                    </div>
+                    <div class="color_circle">
+                        <p>Daily Forecast 16 days</p>
+                    </div>
+                    <div class="color_circle">
+                        <p>Climatic Forecast 30 days</p>
+                    </div>
+                    <div class="color_circle">
+                        <p>Bulk Download</p>
+                    </div>
+                    <div class="color_circle">
+                        <p>Global Weather Alerts
+                            Push notifications</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section>
+            <div class="middle_color_box02">
+                <div class="Weather_data_box txtAlign_center">
+                    <h3 class="coral_txt"><b>Our new products</b></h3>
+                </div>
+                <div class="Weather_data_box_container05">
+                    <div class="new_prducts_box">
+                        <div class="new_prducts_box_img_bg">
+                            <img src="./svg/03P98_solar.svg" alt="">
+                        </div>
+                        <p class="white_txt bg_color p-bottom-40 m-bottom-20">Solar Radiation API</p>
+
+
+                        <p>
+                            This product provides users with current, forecast and historical solar radiation data for
+                            any coordinates on the globe. It includes DNI, DHI and GHI indices for the Clear Sky and
+                            Cloudy Sky models.
+                        </p>
+                    </div>
+                    <div class="new_prducts_box">
+                        <div class="new_prducts_box_img_bg">
+                            <img src="./svg/03P98_alert.svg" alt="">
+                        </div>
+
+                        <p class="white_txt bg_color p-bottom-20 m-bottom-20">Global weather alerts via push
+                            notifications</p>
+                        <p>
+                            This product collects weather warnings from the major weather warning systems and presents
+                            them in a uniform and convenient data format. Push notification mechanism will allow to get
+                            timely notifications about severe weather.
+                        </p>
+                    </div>
+                    <div class="new_prducts_box">
+                        <div class="new_prducts_box_img_bg">
+                            <img src="./svg/03P98_road.svg" alt="">
+
+                        </div>
+                        <p class="white_txt bg_color p-bottom-40 m-bottom-20">
+                            Road Risk API
+                        </p>
+
+
+                        <p>
+                            Enhance your short-term planning with Road Risk API by exploiting an accurate
+                            minute-by-minute forecast for 2 hours, hourly weather forecast and national alerts for
+                            five-days. The weather data is provided for any moment of time for 5 days ahead and 5 days
+                            back, covering any destination and any point along the route.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="spring_bg_relative">
+            <div class="spring_bg">
+                <div class="Weather_data_box_no_margin">
+
+                </div>
+            </div>
+            <div class="spring_txt">
+                <p class="coral_txt">AI and satellite imagery</p>
+                <h3>Agriculture analytics</h3>
+                <p> Based on large amount of processing satellite and climate data, we provide analytical reports
+                    and detailed datasets for crop monitoring:</p>
+                <br>
+                <ul>
+                    <li>Crop map (soy, corn, wheat, etc.)</li>
+                    <li>Recognised field boundaries</li>
+                    <li>Vegetation indicies statistics by each recognised field</li>
+                    <li>Climate data for regions and particular field</li>
+                    <li>Soil and weather data</li>
+                </ul>
+                <div class="btn btn-one">
+                    <span>Learn more</span>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="summer_bg_relative">
+            <div class="summer_bg">
+                <div class="Weather_data_box_no_margin">
+
+                </div>
+            </div>
+            <div class="summer_txt">
+                <p class="coral_txt">AI and satellite imagery</p>
+                <h3>Agro Dashboard</h3>
+                <p> Dashboard is a visual service where you can easily work with satellite imagery and weather data
+                    for your fields. It is the visual demonstration of the data we provide through our Agro API:
+                </p>
+                <br>
+                <ul>
+                    <li>New satellite imagery every 2-4 days</li>
+                    <li>Historical satellite data archive</li>
+                    <li>Vegetation indices and Historical NDVI chart</li>
+                    <li>Current, Forecast and Historical weather data</li>
+                </ul>
+                <div class="btn btn-one">
+                    <span>Learn more</span>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="fall_bg_relative">
+            <div class="fall_bg">
+                <div class="Weather_data_box_no_margin">
+                </div>
+            </div>
+            <div class="fall_txt">
+                <p class="coral_txt">Weather maps</p>
+                <h3>Forecast, Current and Historical</h3>
+                <p> Using only one API call, you can get Forecast (for 10 days with 3-hour step), Historical, and
+                    Current weather maps.</p>
+                <br>
+                <p> 15 map layers include the most useful data, such as precipitation, clouds, pressure, temperature,
+                    wind, and many more.</p>
+                <br>
+                <p> Interactive weather map allows you to watch for current temperature and weather conditions in your
+                    city or any other location on the interactive global map.</p>
+                <div class="btn btn-one">
+                    <span>Learn more</span>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="winter_bg_relative">
+            <div class="winter_bg">
+                <div class="Weather_data_box_no_margin">
+
+                </div>
+            </div>
+
+            <div class="winter_txt">
+                <div class="winter_txt_cont">
+                    <h3>8,000+ OpenWeatherMap weather API repositories on GitHub</h3>
+                    <p> Find lots of workouts with our weather APIs on PHP, Java, Python, Go and many others on the
+                        Partners
+                        page together with 8,000+ repositories on GitHub</p>
+                </div>
+                <div class="btn btn-three">
+                    <span>View solutions</span>
+                </div>
+
+                <div class="winter_txt_cont">
+                    <h3>Google Weather-Based Campaign Management with OpenWeatherMap API</h3>
+                    <p> Run your advertising campaign with the OpenWeatherMap API through Google AdWords
+                    </p>
+                </div>
+                <div class="btn btn-three">
+                    <span>Read more</span>
+                </div>
+
+                <div class="winter_txt_cont">
+                    <h3>Connect your weather station to OpenWeatherMap</h3>
+                    <p> We are glad to invite you to join our network of private weather stations. Today we have more
+                        than
+                        80,000 weather stations around the world.</p>
+                </div>
+                <div class="btn btn-three">
+                    <span>Connect</span>
+                </div>
+
+
+                <div class="winter_txt_cont">
+                    <h3>Get weather data for free for open source project</h3> We are happy to support open projects
+                    with
+                    <p>We are happy to support open projects with open source code. If you need to make a large number
+                        of
+                        API calls and you have published your code on GitHub or BitBucket, please contact us and we will
+                        provide you with extended conditions.</p>
+                </div>
+                <div class="btn btn-three">
+                    <span>Contact us</span>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="middle_color_box02">
+            </div>
+        </section>
+
+        <section>
+            <div class="contact_bg">
+                <h3>BLOG</h3>
+            </div>
+            <div class="contact_bg">
+                <img src="./images/ow_economy_1.jpg" alt="">
+                <div class="contact01">
+                    <p>10 Dec 2022</p>
+                    <p class="coral_txt">TECHNOLOGIES , WEATHER</p>
+                    <p class="bold_txt"><a href="#">
+                            How the Circular Economy Can Tackle Today’s Global Challenges
+                        </a></p>
+                    <p>“Waste is a design flaw” - Sophie Thomas In our last article, we looked at the benefits that
+                        adopting
+                        a</p>
+                    <p class="coral_txt">#airpollution #api #climatechange #weather #weathermap #weatherrisk</p>
+                </div>
+            </div>
+            <div class="contact_bg">
+                <img src="./images/climate_change_ow2.jpg" alt="">
+                <div class="contact01">
+                    <p>03 Dec 2022</p>
+                    <p class="coral_txt">AGRO , TECHNOLOGIES , WEATHER</p>
+                    <p class="bold_txt"><a href="#">
+                            Climate Change - Are there causes for optimism?
+                        </a></p>
+                    <p>As we have described in previous articles, the challenges posed by climate change are immense.
+                    </p>
+                    <p class="coral_txt">#airpollution #api #climatechange #transport #weather #weatherapp #weathermap
+                    </p>
+                </div>
+            </div>
+            <div class="contact_bg">
+                <img src="./images/climate_city_1.jpg" alt="">
+                <div class="contact01">
+                    <p>28 Nov 2022</p>
+
+                    <p class="coral_txt">AGRO , TECHNOLOGIES , WEATHER</p>
+                    <p class="bold_txt"><a href="">How our cities are creating a sustainable and healthy human
+                            environment.</a></p>
+                    <p> Our cities have always been in a constant state of transition. The recent environmental and
+                        climate
+                        challenges have given a new impetus to examine the urban infrastructure</p>
+                    <p class="coral_txt">#airpollution #api #climatechange #weather #weatherapp #weathermap</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="middle_color_box02">
+
+            </div>
+        </section>
+
+
+        <section class="container_bg">
+            <div class="container_bg_img">
+                <div class="container">
+
+                    <h2>Weather News</h2>
+                    <div class="row">
+                        <div class="col">
+                            <img src="/images/news/AA159MWd.jpg" alt="">
+                            <span class="col_img_wrap"></span>
+                            <p>사막 마르고 고원 기온 오르니…올겨울 황사 더 자주 온다</p>
+                        </div>
+                        <div class="col"><img src="/images/news/AA15cHmn.jpg" alt="">
+                            <p>사막 마르고 고원 기온 오르니…올겨울 황사 더 자주 온다</p>
+                        </div>
+                        <div class="col">
+                            <img src="images/news/AA158EwH.jpg" alt="">
+                            <p>포근한 날씨 '겉옷은 잠시 손에'</p>
+                        </div>
+                        <div class="col">
+                            <img src="images/news/AA158PTU.jpg" alt="">
+                            <p>건조한 날씨 이어지면서 겨울 산불 급증…국가위기경보 발령</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <img src="images/news/AA158B6E.jpg" alt="">
+                            <p>[내일날씨] 오후부터 경기·전북 중심 최대 5㎝ 눈…남쪽 해상 강풍</p>
+                        </div>
+                        <div class="col">
+                            <img src="images/news/AA14Lgus.jpg" alt="">
+                            <p>[내일날씨]일요일 전국 '대체로 맑음'…강원에는 눈</p>
+                        </div>
+                        <div class="col">
+                            <img src="images/news/AA157Rde.jpg" alt="">
+                            <p>오늘의 날씨 - 오전 (2022년 12월 11일)</p>
+                        </div>
+                        <div class="col"><img src="images/news/AA12plEQ.jpg" alt="">
+                            <p>부산, 대체로 맑은 날씨…낮 최고 12도</p>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <img src="images/news/AA15bEwK.jpg" alt="">
+                            <p>‘이상민 해임안’ 태풍… 여야 모두 “역풍은 상대방이 맞을 것”</p>
+                        </div>
+                        <div class="col">
+                            <img src="images/news/AA15bt9o.jpg" alt="">
+                            <p>“더 추워져라~” 3년만에 겨울축제 대박 꿈꾸는 강원도</p>
+                        </div>
+                        <div class="col">
+                            <img src="images/news/AA13WbaQ.jpg" alt="">
+                            <p>[내일날씨] 아침부터 최대 10㎝ 함박눈…황사까지 덮쳐(종합)</p>
+                        </div>
+                        <div class="col">
+                            <img src="images/news/AA15aPo9.jpg" alt="">
+                            <p>한덕수 “출퇴근 불편 최소화” 대설·한파 대비 지시</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col"></div>
+                        <div class="col"></div>
+                        <div class="col"></div>
+                        <div class="col"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col"></div>
+                        <div class="col"></div>
+                        <div class="col"></div>
+                        <div class="col"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Vue -->
+        <script src="/js/vue/vue.js">    </script>
+    </main>
+</body>
+
+</html>

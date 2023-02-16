@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.element,
+.main_icons {
+    align-items: center;
+    height: 250px;
+    width: 250px;
+    margin: 10px;
+}
+.element_s {
+    align-items: center;
+    height: 50px;
+    width: 50px;
+    margin: auto;
+}
+
+
+
+.elements {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+
+.white {
+    fill: #FFFFFF
+}
+
+.gray {
+    fill: #E0E0E0
+}
+
+.yellow {
+    fill: #FFEB3B
+}

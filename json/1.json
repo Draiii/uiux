@@ -1,0 +1,46 @@
+{
+    "coord": {
+        "lon": 139.7744,
+        "lat": 35.6839
+    },
+    "weather": [
+        {
+            "id": 500,
+            "main": "Rain",
+            "description": "light rain",
+            "icon": "10n"
+        }
+    ],
+    "base": "stations",
+    "main": {
+        "temp": 9.36,
+        "feels_like": 8.02,
+        "temp_min": 7.77,
+        "temp_max": 10.49,
+        "pressure": 1013,
+        "humidity": 69
+    },
+    "visibility": 10000,
+    "wind": {
+        "speed": 2.57,
+        "deg": 340
+    },
+    "rain": {
+        "1h": 0.63
+    },
+    "clouds": {
+        "all": 75
+    },
+    "dt": 1676229651,
+    "sys": {
+        "type": 2,
+        "id": 268395,
+        "country": "JP",
+        "sunrise": 1676237457,
+        "sunset": 1676276370
+    },
+    "timezone": 32400,
+    "id": 1857654,
+    "name": "Marunouchi",
+    "cod": 200
+}
