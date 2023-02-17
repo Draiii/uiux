@@ -1,4 +1,7 @@
 # UI / UX 디자인 구성요소 설계 및 제작
+
+## url : http://tws1.dothome.co.kr/my_weather/
+
 ### 기상예보 모바일 웹 & 앱 Project
 * **프로젝트 기획 이유?**
   > PC 또는 모바일에 맞춰 반응형 웹사이트를 만들고자 했습니다.
