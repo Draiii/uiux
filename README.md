@@ -1,6 +1,6 @@
 # UI / UX 디자인 구성요소 설계 및 제작
 
-## url : http://tws1.dothome.co.kr/my_weather/
+## link : http://tws1.dothome.co.kr/my_weather/
 
 ### 기상예보 모바일 웹 & 앱 Project
 * **프로젝트 기획 이유?**
