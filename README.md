@@ -68,6 +68,8 @@
   >
   > 또한 검색을 통해 알고싶은 도시의 기상예보로 확인할 수 있도록 구현했습니다.
 
+* **사이드 네비게이션**
+
   <p align="center"><img src="https://user-images.githubusercontent.com/111415080/219765818-cad62d2b-3831-4b1e-8ec8-c44e37133803.gif"></p>
   
   > 사이드 네비게이션 검색바를 통해 도시 이름을 검색할 수 있습니다.
@@ -142,16 +144,85 @@
     "name": "Marunouchi",
     "cod": 200
   }
+  ```
 <p align="center">json 형태의 data 정보 </p>
 
+* **json 데이터 리스트 활용**
+
   > 이제 경도와 위도를 바탕으로한 날씨정보를 불러올 수 있었는데 중요한 점은 경도와 위도를 어떻게 불러와야 하는 것 이었습니다.
+  > 처음 생각했던 방법은 도시의 위치정보를 api로 받아오는 것이었는데 해외 국가 코드명 및 도시명, 경도 위도 api를 구하기 쉽지 않아 다른방법을 찾아야 했습니다.
+  > 고민끝에 내린 결론은 '데이터 파일을 새로 만들자' 였습니다. 전세계 국가명 및 도시명과 경도 위도 데이터를 기반으로 검색한 결과 json 파일을 찾을 수 있었고 이를 바탕으로 
+  > 도시명 및 국가명(국가코드)로 리스트를 정리했고 데이터를 받아 올 수 있게 기능구현했습니다.
+
+  ```json
+  cities.js
+  {
+      "country": "GB",
+      "name": "Thorngumbald",
+      "lat": "53.721",
+      "lng": "-0.17175"
+    },
+    {
+      "country": "GB",
+      "name": "Thorney",
+      "lat": "52.62147",
+      "lng": "-0.10815"
+    },
+    {
+      "country": "GB",
+      "name": "Thorner",
+      "lat": "53.86093",
+      "lng": "-1.42676"
+    },
+    {
+      "country": "GB",
+      "name": "Thorne",
+      "lat": "53.61122",
+      "lng": "-0.96308"
+    }
+  ``` 
   
+<p align="center">국가/도시명에 관한 경도, 위도 데이터 리스트</p>
 
-### 라이브러리 프레임 워크
-
-### 만들면서 어려웟던점/ 고민 왜 
-
-  <img src="https://user-images.githubusercontent.com/111415080/219709842-234bb0ef-d0ee-4a07-9ab7-a44e59e9af85.PNG" width="400" height="300"/>
-  <img src="https://user-images.githubusercontent.com/111415080/219718844-92150f2d-3e00-41de-b301-afd01da29bdc.PNG" width="400" height="300"/>
+  ```javascript
+        <!-- cites data -->
+        <script type="module">
+            import cities from "./js/cities.js"
+            const CITIES_LENGTH = 300
+            $(document).ready(function () {
+                for (var i = 0; i < CITIES_LENGTH; i++) {
+                    $(".country_list").append("<li class='languages'><a href=index.html?lat=" + cities[i].lat + "&lng=" + cities[i].lng + ">(" + cities[i].country +
+                    ")" + cities[i].name + "</li>")
+                }
+            });
+        </script>
+  ```
   
-  //**참고 사이트 날씨날씨 (https://www.nalssinalssi.com/)     오픈웨더(https://openweathermap.org/)**
+  <p align="center">국가/도시명 list에 추가</p>
+
+
+# 프로젝트 후기
+
+  ### 동기
+  
+  > API 활용하기 위해 날씨 어플 프로젝트를 진행하게되었습니다. 많은 데이터 처리, 비동기화 작업, 실시간 업데이트등 웹개발을 하면서 경험해보지 못했던것들 만들어보고자 했고 부족하지만 원하는 결과물을 만들었던 것 같습니다. data 요청과 호출 값을 객체로 받아오는 과정 및 데이터 표기를 위한 변수 처리 및 함수 사용등 많은 경험을 얻었고 프로젝트를 진행하면서 공부도 많이 됐습니다. 
+
+  ### 아쉬웠던 점
+  
+  > 어플처럼 다운로드 및 사용 가능하게 PWA 개발을 목표로 했으나 정해진 시일내에 완성을 위해 배제하게 되었습니다. uiux 프로젝트 진행하면서 pc, tablet, mobile 에 맞춰 웹페이지 크기를 조절하면서 작업한다는게 생각보다 많은시간이 걸렸고 데이터 처리과정도 익숙치 않아 많은 시간이 걸렸던거 같습니다. 또한 처음 기획 당시 js파일, css파일등 캡슐화하여 작업 할 계획이었는데 코드를 만들어 갈수록 기능구현에 급급한 나머지 제대로 분리 및 정리가 되지 않았습니다. 
+
+  > 웹페이지 배포를 위한 호스팅작업을 염두해 두고 코드를 만들었지만 막상 호스팅 했을 시 경로 오류나 파일 대소문자오류등 수정해야 할 부분들이 많았습니다. 차후 프로젝트 진행 시 해당사항을 유의하며 작업을 할 것입니다.
+
+# 다음 프로젝트 진행 방향
+
+  ### React & Vue
+  
+  > 여태까지 바닐라 스크립트로만 작업을 해왔기에 다음 프로젝트로는 react 로 작업을 할 예정입니다. CLI 개발 환경은 구축되어있고 react hook의 개념정리 및 예제 연습등을 통해 어느정도 기초를 쌓은 후 프로젝트 작업을 진행할 것입니다. 생각건대 프로젝트를 진행하면서 공부하는것이 제일 학습에 효율적인거 같습니다. 정해진 기한 없이 작업하는것보다 프로젝트 마감일을 정해두고 계획을 세세하게 나누어 작업을 하고 마감일 기준 일주일 단위 또는 2~3일 단위로 잘게 나누어 정해진 작업을 끝마치는것에 중점을 둬야겠습니다.
+
+
+
+# 라이센스
+ 
+  **프로젝트에 사용된 모든 이미지 및 API 정보들은 상업적 목적없이 개인 학습 및 교육으로만 사용했습니다.**  
+  
+  **참고 사이트 날씨날씨 (https://www.nalssinalssi.com/)     오픈웨더(https://openweathermap.org/)**
