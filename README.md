@@ -74,11 +74,13 @@
   
 * **반응형 페이지 디자인 구상 및 설계**
 
-  PC (min-width: 1024px)　　　　　　　　　　　　　　　Tablet (max-width: 1023px)　　　　　　　  Mobile (max-width: 767px)
-    <img src="https://user-images.githubusercontent.com/111415080/219829741-e6ecd3dd-d988-4c67-a1f4-3ccbb6fd8d14.png" width="400" />
-    <img src="https://user-images.githubusercontent.com/111415080/219829747-aecefcaa-0c9e-48b5-9af3-870a10bca688.png" width="300" />
+  
+    <img src="https://user-images.githubusercontent.com/111415080/219829741-e6ecd3dd-d988-4c67-a1f4-3ccbb6fd8d14.png" width="350" />
+    <img src="https://user-images.githubusercontent.com/111415080/219829747-aecefcaa-0c9e-48b5-9af3-870a10bca688.png" width="270" />
     <img src="https://user-images.githubusercontent.com/111415080/219829751-aac8dca3-a95b-4103-b209-a3a6f0831e67.png" width="200" />
     
+  > PC (min-width: 1024px)　　　　　　　　　　　Tablet (max-width: 1023px)　　　　　  Mobile (max-width: 767px)
+  > 
   > 미디어쿼리를 이용하여 구간을 설정하고 화면크기 증감에 따라 페이지가 반응하도록 했습니다.
   >
   > CSS 작업을 하면서 width 및 글꼴크기의 값을 절대값이 아닌 상대값으로 많이 설정했고 분기점에 따라 container 안의 item의 배치와 크기를 신경쓰며 작업했습니다.
