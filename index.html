@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tablet web</title>
+    <title>uiux mobile web & app</title>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -32,10 +32,9 @@
     <!-- cites data -->
     <script type="module">
         import cities from "./js/cities.js"
+        const CITIES_LENGTH = 300
         $(document).ready(function () {
-            for (var i = 0; i < 300; i++) {
-                //console.log("data : " + cities[i].name);
-                //console.log("length : " + cities.length);
+            for (var i = 0; i < CITIES_LENGTH; i++) {
                 $(".country_list").append("<li class='languages'><a href=index.html?lat=" + cities[i].lat + "&lng=" + cities[i].lng + ">(" + cities[i].country + ")" + cities[i].name + "</li>")
             }
         });
@@ -107,11 +106,20 @@
     <!-- jQuery -->
     <script src="./js/jquery/jQuery-3.6.1min.js"></script>
     <script type="text/javascript">
+
         $(document).ready(function () {
             $(".gif_txt").fadeIn(4000);
             $(document).scrollTop(
                 //console.log($(document).scrollTop())
             );
+
+/*             setInterval(() => {
+                if ($(document).width() < 780) {
+                    $(".public_box_main").css({ width: "100%" })
+                }
+                else $(".public_box_main").css({ width: "80%" })
+            }, 1000)
+ */
 
 
             /* hide new */
@@ -119,17 +127,17 @@
 
             /* scroll event */
             document.addEventListener('scroll', function () {
+
                 if (window.scrollY > 800) {
                     $(".public_box_main").css({
-                        width: "100%",
+                        width: "80%",
                         transform: "scale(0.3)",
                         position: "sticky",
                         top: "-260px",
                         left: "0",
-                        margin: "0",
+                        margin: "0% auto",
                         backgroundColor: "rgba(255, 255, 255, 0)",
                         transitionDuration: "0.3s",
-
                     });
 
                     $(".city_txt").css({
@@ -152,20 +160,24 @@
                 }
                 else {
                     $(".public_box_main").css({
-                        width: "80%",
+                        width: "100%", 
                         margin: "2% auto",
                         transform: "scale(1.0)",
                         position: "static",
                         backgroundColor: "rgba(255, 255, 255, 0.1)",
-                        transitionDuration: "0.3s",
+                        transitionDuration: "0.3s"
                     });
-
+/*                     if ($(document).width() < 780) {
+                        $(".public_box_main").css({ width: "100%" })
+                    }
+                    else $(".public_box_main").css({ width: "80%" })
+ */
                     $(".city_txt").css({
-                        fontSize: "2rem"
+                        fontSize: "3rem"
                     });
 
                     $(".country_txt").css({
-                        fontSize: "4rem"
+                        fontSize: "6rem"
                     });
 
                     /* hide nav */
@@ -2042,13 +2054,8 @@
         </section>
 
         <section>
-            <div class="middle_color_box02">
-            </div>
-        </section>
-
-        <section>
             <div class="contact_bg">
-                <h3>BLOG</h3>
+                <h3 class="coral_txt">BLOG</h3>
             </div>
             <div class="contact_bg">
                 <img src="./images/ow_economy_1.jpg" alt="">
