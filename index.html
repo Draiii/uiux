@@ -113,15 +113,6 @@
                 //console.log($(document).scrollTop())
             );
 
-/*             setInterval(() => {
-                if ($(document).width() < 780) {
-                    $(".public_box_main").css({ width: "100%" })
-                }
-                else $(".public_box_main").css({ width: "80%" })
-            }, 1000)
- */
-
-
             /* hide new */
             $(".container_bg").hide();
 
@@ -141,7 +132,7 @@
                     });
 
                     $(".city_txt").css({
-                        fontSize: "3rem"
+                        fontSize: "3rem",
                     });
 
                     $(".country_txt").css({
@@ -160,18 +151,17 @@
                 }
                 else {
                     $(".public_box_main").css({
-                        width: "100%", 
                         margin: "2% auto",
                         transform: "scale(1.0)",
                         position: "static",
                         backgroundColor: "rgba(255, 255, 255, 0.1)",
                         transitionDuration: "0.3s"
                     });
-/*                     if ($(document).width() < 780) {
+                    if ($(document).width() < 780) {
                         $(".public_box_main").css({ width: "100%" })
                     }
                     else $(".public_box_main").css({ width: "80%" })
- */
+
                     $(".city_txt").css({
                         fontSize: "3rem"
                     });
@@ -2055,7 +2045,7 @@
 
         <section>
             <div class="contact_bg">
-                <h3 class="coral_txt">BLOG</h3>
+                <h3 class="coral_txt txtAlign_center">BLOG</h3>
             </div>
             <div class="contact_bg">
                 <img src="./images/ow_economy_1.jpg" alt="">

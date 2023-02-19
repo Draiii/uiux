@@ -974,7 +974,7 @@
     margin: 20px;
     display: flex;
     justify-content: center;
-    transform: scale(0.5);
+    
 
 }
 .bold_txt {
@@ -1021,6 +1021,7 @@ body {
 
 
 .public_box_main .public_box_mainTxt {
+    min-width: 500px;
     color: #ffffff;
 }
 
@@ -1071,6 +1072,10 @@ body {
     justify-content: space-around;
     text-align: center;
     vertical-align: top;
+}
+
+.middle_box02_container > div {
+    width: 25%;
 }
 
 .middle_box02_container p {
