@@ -236,10 +236,10 @@
 
         /* weather mpa API */
         var map_api_URL
-        console.log("main : " + main_api_URL);
-        console.log("hourly : " + hourly_api_URL);
-        console.log("days : " + days_api_URL);
-        console.log("polution : " + airPl_api_URL);
+        /*         console.log("main : " + main_api_URL);
+                console.log("hourly : " + hourly_api_URL);
+                console.log("days : " + days_api_URL);
+                console.log("polution : " + airPl_api_URL); */
         /* get main API */
 
         $.ajax({
@@ -424,11 +424,6 @@
                         break;
                 };
 
-
-                console.log("메인 아이콘 : " + resp.weather[0].icon);
-
-
-
                 /* sun rise/set time */
                 var sunrise_date = new Date();
                 var sunset_date = new Date();
@@ -603,19 +598,6 @@
                     13d.png 	13n.png 	snow
                     50d.png 	50n.png 	mist */
 
-                    //01d.png 	01n.png 	clear sky
-                    /*         if (resp.list[i].weather[0].icon == "1" || "1") {
-                                //$(".svg_" + i + "").load("./src/sunny_s.html");                        
-                            }
-                            if (resp.list[i].weather[0].icon == "02d" || "02n") {
-                                $(".svg_" + i + "").load("./src/clear_night_s.html");
-                            }
-                            if (resp.list[i].weather[0].icon == "10d" || "10n") {
-                                $(".svg_" + i + "").load("./src/rainy_s.html");
-                            } */
-
-
-
                     switch (resp.list[i].weather[0].icon) {
                         case "01d":
                             $(".svg_" + i + "").load("./src/sunny_s.html");
@@ -676,12 +658,6 @@
                         default:
                             break;
                     };
-
-
-                    console.log(i + "데이 시간:" + (resp.list[i].dt_txt));
-                    console.log(i + "메인 온도:" + resp.list[i].main.temp);
-                    console.log(i + "데이 시간:" + hours_data[i].substring(11, 13));
-                    console.log(i + " 아이콘 값:" + resp.list[i].weather[0].icon);
                 }
             },
 
@@ -744,30 +720,21 @@
                     default:
                         break;
                 }
-                console.log("공기 오염 : " + resp.list[0].main.aqi);
+
             },
             error: function (err) {
                 console.log("failed to get apiURL");
             }
         })
-
-
-
     </script>
 </head>
 
 <body>
-
     <div class="top_menu_bg">
-
         <div class="top_menu">
-
         </div>
-
     </div>
     <!-- top nav -->
-
-
     <div class="nav_bg">
         <nav>
             <div class="menu-btn">
@@ -938,16 +905,6 @@
         </div>
     </div>
 
-    <!--     <div class="first_screen">
-        <div class="gif_box">
-        </div>
-        <div class="gif_txt">
-            <p>What's the weather like today?</p>
-
-        </div>
-    </div> -->
-
-    <!-- main -->
     <main>
         <div class="public_box_main">
             <div class="public_box_mainTxt">
@@ -955,37 +912,8 @@
                 <p class="txtAlign_right"><span class="city_txt"></span><span class="country_txt"></span></p>
 
                 <div class="icons">
-                    <!-- Cloudy -->
-                    <span class="main_icons">
+                    <span class="main_icons"></span>
 
-                    </span>
-                    <!--                     <div class="element">
-                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 60.7 40"
-                                style="enable-background:new 0 0 60.7 40;" xml:space="preserve">
-                                <g id="Cloud_1">
-                                    <g id="White_cloud_1">
-                                        <path id="XMLID_2_" class="white"
-                                            d="M47.2,40H7.9C3.5,40,0,36.5,0,32.1l0,0c0-4.3,3.5-7.9,7.9-7.9h39.4c4.3,0,7.9,3.5,7.9,7.9v0 C55.1,36.5,51.6,40,47.2,40z" />
-                                        <circle id="XMLID_3_" class="white" cx="17.4" cy="22.8" r="9.3" />
-                                        <circle id="XMLID_4_" class="white" cx="34.5" cy="21.1" r="15.6" />
-                                        <animateTransform attributeName="transform" attributeType="XML" dur="6s"
-                                            keyTimes="0;0.5;1" repeatCount="indefinite" type="translate" values="0;5;0"
-                                            calcMode="linear">
-                                        </animateTransform>
-                                    </g>
-                                    <g id="Gray_cloud_1">
-                                        <path id="XMLID_6_" class="gray"
-                                            d="M54.7,22.3H33.4c-3.3,0-6-2.7-6-6v0c0-3.3,2.7-6,6-6h21.3c3.3,0,6,2.7,6,6v0 C60.7,19.6,58,22.3,54.7,22.3z" />
-                                        <circle id="XMLID_7_" class="gray" cx="45.7" cy="10.7" r="10.7" />
-                                        <animateTransform attributeName="transform" attributeType="XML" dur="6s"
-                                            keyTimes="0;0.5;1" repeatCount="indefinite" type="translate" values="0;-3;0"
-                                            calcMode="linear">
-                                        </animateTransform>
-                                    </g>
-                                </g>
-                            </svg>
-                        </div> -->
                     <p class="temp_txt"><span class="main_temp_c"></span><span class="main_temp_deg">°</span><span
                             class="main_temp_f"></span>
                     </p>
@@ -1310,35 +1238,7 @@
                         </tbody>
                     </table>
                 </div>
-
-
-
-
-
-
             </div>
-        </div>
-        <div class="swiper-wrapper">
-            <!-- Slides -->
-            <!--                         <script type="text/javascript">
-                    for (var i = 1; i < 30; i++) {
-                        document.writeln("<div class='days_" + i + " swiper-slide'>");
-                        if (i % 7 == 1) document.writeln("<p id='dayOfTheWeek'>Mon.</p>");
-                        else if (i % 7 == 2) document.writeln("<p id='dayOfTheWeek'>Tue.</p>");
-                        else if (i % 7 == 3) document.writeln("<p id='dayOfTheWeek'>Wed.</p>");
-                        else if (i % 7 == 4) document.writeln("<p id='dayOfTheWeek'>Thu.</p>");
-                        else if (i % 7 == 5) document.writeln("<p id='dayOfTheWeek'>Fri.</p>");
-                        else if (i % 7 == 6) document.writeln("<p id='dayOfTheWeek'>Sat.</p>");
-                        else if (i % 7 == 0) document.writeln("<p id='dayOfTheWeek'>Sun.</p>");
-                        document.writeln("<p>" + i + "</p>");
-                        document.writeln("<div class=svg_box>" + i + "</div>");
-                        document.writeln("</div>");
-                    }
-                </script> -->
-            <!-- </div> -->
-            <!-- <div class="swiper-pagination"></div> -->
-            <!--                     <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div> -->
         </div>
 
         <div class="public_box_02">
@@ -1372,13 +1272,9 @@
                                 attribution: '&copy; <a href="http://owm.io">VANE</a>'
                             })
                         };
-
-
                     </script>
                     <script>
                         var map = L.map('map').setView([60, 50], 3);
-
-
                         //http://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=d9cfe451d5a775abaf178aec4951b4b0
 
                         var Temp = L.tileLayer('http://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=d22d9a6a3ff2aa523d5917bbccc89211', {
@@ -1425,32 +1321,6 @@
                     </script>
                 </div>
             </div>
-            <!--             <div class="location_part_temp">
-                <table>
-                    <tr>
-                        <td>
-                            time
-                        </td>
-                        <td>
-                            icons
-                        </td>
-                        <td>
-                            temp.
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            time
-                        </td>
-                        <td>
-                            icons
-                        </td>
-                        <td>
-                            temp.
-                        </td>
-                    </tr>
-                </table>
-            </div> -->
         </div>
 
 
