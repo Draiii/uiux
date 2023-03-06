@@ -1,5 +1,7 @@
 /* PC (해상도 1024px)*/
 @media all and (min-width:1024px) {
+
+
     .date_txt {
         text-align: right;
         font-size: 40px;
@@ -16,6 +18,7 @@
         position: static;
         background-color: rgba(255, 255, 255, 0.1);
         width: 80%;
+        max-width: 1600px;
         min-height: 660px;
         min-width: 768px;
         z-index: 250;
@@ -25,6 +28,7 @@
 
     .middle_color_txt01 {
         width: 80%;
+        max-width: 1600px;
         padding: 30px 20px;
         margin: auto;
         min-height: 200px;
@@ -34,12 +38,13 @@
     }
 
     .industries_main_txt {
-        width: 50%;
+        width: 50%;      
         padding-top: 3%;
         padding-left: 10%;
         font-size: 1.875rem;
         font-weight: bold;
     }
+
 
     .Weather_data_box_container03 {
         display: flex;
@@ -86,7 +91,7 @@
     .fall_txt {
         position: absolute;
         top: 10%;
-        left: 15%;
+        left: 20%;
         width: 50%;
     }
 
@@ -100,6 +105,8 @@
     }
 
     .contact_bg {
+        width: 80%;
+        max-width: 1600px;
         margin: 35px auto;
         display: flex;
         justify-content: center;
@@ -140,6 +147,7 @@
         justify-content: space-around;
         align-items: center;
         width: 80%;
+        max-width: 1600px;
         height: auto;
         margin: 20px auto;
     }
@@ -188,6 +196,7 @@
         display: flex;
         justify-content: space-evenly;
         height: auto;
+        
         /* border: 1px solid #ffffff; */
         margin: 20px auto;
         z-index: 1;
@@ -195,7 +204,7 @@
 
     /* map */
     .location_part_map {
-        width: 80%;
+        width: 90%;
         height: 600px;
         border: 1px solid #ffffff;
         margin: auto;
@@ -203,6 +212,7 @@
 
     .industries_cont_box {
         width: 80%;
+        max-width: 1600px;
         margin: 35px auto;
         display: flex;
         justify-content: center;
@@ -239,6 +249,8 @@
     }
 
     .Weather_data_box_container05 {
+        max-width: 1600px;
+        margin: auto;
         display: flex;
         justify-content: center;
         text-align: center;
@@ -250,10 +262,10 @@
         margin: 10px 0;
     }
     .winter_txt {
-
         position: absolute;
+        max-width: 1600px;
         top: 10%;
-        left: 15%;
+        left: 20%;
         width: 70%;
     }
 
@@ -261,6 +273,8 @@
     .footer_container01 {
         color: #fff;
         display: flex;
+        max-width: 1600px;
+        margin: auto;
         justify-content: space-evenly;
         padding: 20px;
     }
@@ -271,6 +285,7 @@
     }
     .middle_box02 {
         width: 80%;
+        max-width: 1600px;
         margin: 0 auto;
     }
     .main_temp_c {
@@ -334,7 +349,7 @@
     .public_box_main {
         margin: 2% auto;
         background-color: rgba(255, 255, 255, 0.1);
-        width: 80%;
+        width: 80%;        
         min-height: 660px;
         min-width: 768px;
         z-index: 250;
@@ -343,6 +358,7 @@
 
     .middle_color_txt01 {
         width: 80%;
+        
         padding: 30px 20px;
         margin: auto;
         min-height: 200px;
@@ -643,7 +659,7 @@
 /* 모바일 가로, 모바일 세로 (해상도 580px ~ 767px)*/
 @media all and (max-width:767px) {
     body {
-        
+        min-width: 550px;
         font-size: 1rem;
     }
 
@@ -1013,9 +1029,7 @@ body {
 
 }
 
-body {
-    min-width: 481px;
-}
+
 
 
 
@@ -1048,6 +1062,7 @@ body {
     background-color: rgba(51, 73, 95, 0.1);
     /* border-radius: 30px; */
     width: 100%;
+    max-width: 1600px;
     height: auto;
     padding: 10px;
     z-index: 10;
@@ -1233,6 +1248,7 @@ body {
 /* time box */
 .swiper {
     width: 80%;
+    max-width: 1600px;
     padding: 0 50px;
     height: 350px;
 }
@@ -1384,6 +1400,7 @@ table {
 
 /* Weather data */
 .Weather_data_box {
+    max-width: 1600px;
     width: 80%;
     height: auto;
     margin: 35px auto;
@@ -1781,6 +1798,8 @@ table {
     color: #ff7f50;
 }
 
-
+.pd-30 {
+    padding: 5%;
+}
 
 /* mdi css */

@@ -365,59 +365,59 @@
 
                 switch (resp.weather[0].icon) {
                     case "01d":
-                        $(".main_icons").load("./src/Sunny.html");
+                        $(".main_icons").load("./src/sunny.html");
                         break;
                     case "02d":
                         $(".main_icons").load("./src/cloudy_with_sun.html");
                         break;
                     case "03d":
-                        $(".main_icons").load("./src/Sunny_with_wind.html");
+                        $(".main_icons").load("./src/sunny_with_wind.html");
                         break;
                     case "04d":
-                        $(".main_icons").load("./src/Cloudy.html");
+                        $(".main_icons").load("./src/cloudy.html");
                         break;
                     case "09d":
-                        $(".main_icons").load("./src/Rainy.html");
+                        $(".main_icons").load("./src/rainy.html");
                         break;
                     case "10d":
-                        $(".main_icons").load("./src/Cloudy_with_rain_and_lightning.html");
+                        $(".main_icons").load("./src/cloudy_with_rain_and_lightning.html");
                         break;
                     case "11d":
-                        $(".main_icons").load("./src/Cloudy_with_lightning.html");
+                        $(".main_icons").load("./src/cloudy_with_lightning.html");
                         break;
                     case "13d":
-                        $(".main_icons").load("./src/Snowy.html");
+                        $(".main_icons").load("./src/snowy.html");
                         break;
                     case "50d":
-                        $(".main_icons").load("./src/Sunny.html");
+                        $(".main_icons").load("./src/sunny.html");
                         break;
 
                     case "01n":
-                        $(".main_icons").load("./src/Sunny.html");
+                        $(".main_icons").load("./src/sunny.html");
                         break;
                     case "02n":
-                        $(".main_icons").load("./src/Cloudy_with_sun.html");
+                        $(".main_icons").load("./src/cloudy_with_sun.html");
                         break;
                     case "03n":
-                        $(".main_icons").load("./src/Sunny_with_wind.html");
+                        $(".main_icons").load("./src/sunny_with_wind.html");
                         break;
                     case "04n":
-                        $(".main_icons").load("./src/Cloudy.html");
+                        $(".main_icons").load("./src/cloudy.html");
                         break;
                     case "09n":
-                        $(".main_icons").load("./src/Rainy.html");
+                        $(".main_icons").load("./src/rainy.html");
                         break;
                     case "10n":
-                        $(".main_icons").load("./src/Cloudy_with_rain_and_lightning.html");
+                        $(".main_icons").load("./src/cloudy_with_rain_and_lightning.html");
                         break;
                     case "11n":
-                        $(".main_icons").load("./src/Cloudy_with_lightning.html");
+                        $(".main_icons").load("./src/cloudy_with_lightning.html");
                         break;
                     case "13n":
-                        $(".main_icons").load("./src/Snowy.html");
+                        $(".main_icons").load("./src/snowy.html");
                         break;
                     case "50n":
-                        $(".main_icons").load("./src/Sunny.html");
+                        $(".main_icons").load("./src/sunny.html");
                         break;
 
                     default:
@@ -1085,12 +1085,6 @@
                                                 break;
                                         };
 
-
-                                        console.log(i + "데이 시간:" + (resp.list[i].dt_txt));
-                                        console.log(i + "메인 온도:" + resp.list[i].main.temp);
-                                        console.log(i + "데이 시간:" + hours_data[i].substring(11, 13));
-                                        console.log(i + " 아이콘 값:" + resp.list[i].weather[0].icon);
-
                                     },
 
                                     error: function (err) {
@@ -1745,7 +1739,7 @@
                         <p class="white_txt bg_color p-bottom-40 m-bottom-20">Solar Radiation API</p>
 
 
-                        <p>
+                        <p class="pd-30">
                             This product provides users with current, forecast and historical solar radiation data for
                             any coordinates on the globe. It includes DNI, DHI and GHI indices for the Clear Sky and
                             Cloudy Sky models.
@@ -1758,7 +1752,7 @@
 
                         <p class="white_txt bg_color p-bottom-20 m-bottom-20">Global weather alerts via push
                             notifications</p>
-                        <p>
+                        <p class="pd-30">
                             This product collects weather warnings from the major weather warning systems and presents
                             them in a uniform and convenient data format. Push notification mechanism will allow to get
                             timely notifications about severe weather.
@@ -1774,7 +1768,7 @@
                         </p>
 
 
-                        <p>
+                        <p class="pd-30">
                             Enhance your short-term planning with Road Risk API by exploiting an accurate
                             minute-by-minute forecast for 2 hours, hourly weather forecast and national alerts for
                             five-days. The weather data is provided for any moment of time for 5 days ahead and 5 days
